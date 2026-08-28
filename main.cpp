@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+//#include <QCoreApplication>
 #include <iostream>
 
 
@@ -29,6 +29,8 @@ std::string generateProgram() {
     return myClass.compile();
 }
 
+
+// сборка: g++ main.cpp src/Unit.cpp -o build\Release\CodeGeneration.exe -Ilib/
 int main(int argc, char *argv[])
 {
     std::cout << generateProgram() << std::endl;

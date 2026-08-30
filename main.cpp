@@ -31,8 +31,25 @@ std::string generateProgram() {
 
 
 // сборка: g++ main.cpp src/Unit.cpp -o build\Release\CodeGeneration.exe -Ilib/
+
+// сборка через cmake: cmake -B build                                           *
+/*                     cmake --build build --config Release                     *
+ * из коммандной строки на уровне CMakeLists.txt                                *
+ * исполняемый файл будет расположен по пути: build\Release\CodeGeneration.exe  *
+ */ 
+
+ #include "CppClassUnit.h"
 int main(int argc, char *argv[])
 {
-    std::cout << generateProgram() << std::endl;
+    const std::string className = "MyClass";
+    CppClassUnit claca(className, Modifiers::ClassModifiers::UNDEFINED);
+    std::string stra = "Failed\n";
+    try{
+        stra = claca.compile();
+    } catch (std::invalid_argument &e){
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+    std::cout<<stra<<'\n';
+    //std::cout << generateProgram() << std::endl;
     return 0;
 }

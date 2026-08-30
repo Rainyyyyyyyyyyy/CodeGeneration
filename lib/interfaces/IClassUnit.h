@@ -1,3 +1,6 @@
+#ifndef ICLASSUNIT_H
+#define ICLASSUNIT_H
+
 #include <memory>
 #include <vector>
 
@@ -28,14 +31,16 @@ class IClassUnit : public Unit {
 
     //static const std::vector< std::string > ACCESS_MODIFIERS; // = { "public", "protected", "private" };
 public:
-    IClassUnit(const std::string& t_name) : name(t_name) {
-        //fields.resize(ACCESS_MODIFIERS.size());
-    }
+    IClassUnit(const std::string& t_name);
 
     virtual std::string compile( unsigned int level = 0 ) const = 0;
 
     virtual void add(const std::shared_ptr <Unit> &, Flags flags) = 0;
 
+
+    Modifiers::ClassModifiers getClassModifier() const;
+
+    std::string getName() const;
 
 protected:
 
@@ -52,3 +57,5 @@ protected:
     }
         
 };
+
+#endif // ICLASSUNIT_H

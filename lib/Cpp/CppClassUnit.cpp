@@ -30,6 +30,7 @@ std::string CppClassUnit::compile(unsigned int level) const {
         return result + generateShift(level) + "};\n";
     }
     for(size_t i = 0; i < AccessModifierNames.size(); ++i){
+        result += generateShift(level) + AccessModifierNames[i] + ":\n";
         for(const auto &unit : Members[i]){
             result += unit->compile(level + 1);
         }

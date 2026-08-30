@@ -17,20 +17,20 @@ CppClassUnit::~CppClassUnit() = default;
 
 void CppClassUnit::add(const std::shared_ptr <Unit> &unit, Flags flags){
     auto AccIndex = getAccessModifierNumber(static_cast<Modifiers::AccessModifiers>(flags));
-    if(AccIndex >= fields.size()){
-        fields.resize(AccIndex+1);
+    if(AccIndex >= Members.size()){
+        Members.resize(AccIndex+1);
     }
-    fields[AccIndex].push_back(unit);
+    Members[AccIndex].push_back(unit);
 };
 
 
 std::string CppClassUnit::compile(unsigned int level) const {
     std::string result = generateShift(level) + "class " + name + " {\n";
-    if (fields.size() < AccessModifierNames.size()) {
+    if (Members.size() < AccessModifierNames.size()) {
         return result + generateShift(level) + "};\n";
     }
     for(size_t i = 0; i < AccessModifierNames.size(); ++i){
-        for(const auto &unit : fields[i]){
+        for(const auto &unit : Members[i]){
             result += unit->compile(level + 1);
         }
     }
@@ -38,7 +38,7 @@ std::string CppClassUnit::compile(unsigned int level) const {
     return result;
 }
 
-
+// названия модификаторов на С++
 const std::vector<std::string> CppClassUnit::AccessModifierNames = { "public", "protected", "private" };
 
 

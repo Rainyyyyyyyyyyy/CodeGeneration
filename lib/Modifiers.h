@@ -41,6 +41,16 @@ namespace Modifiers{
         FINAL = 1 << 6,
         ABSTRACT_FINAL = ABSTRACT | FINAL
     };
+
+
+    enum class ArgumentTypes : Unit::Flags{  // типы аргументов функции
+        UNDEFINED = 0,
+        INT = 1,
+        DOUBLE = 2,
+        CHAR = 3,
+        STRING = 4,
+        BOOL = 5
+    };
     
 } // Modifiers
 

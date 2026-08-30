@@ -6,12 +6,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Создание библиотеки из исходных файлов в src/
 add_library(CodeGenLib
-    src/Unit.cpp
-    src/ClassUnit.cpp
-    src/IClassUnit.cpp
-    src/MethodUnit.cpp
-    src/PrintOperator.cpp
-    src/CppClassUnit.cpp
+    lib/interfaces/Unit.cpp
+    #src/ClassUnit.cpp
+    lib/interfaces/IClassUnit.cpp
+    lib/interfaces/IFieldUnit.cpp
+    lib/interfaces/IMethodArgumentUnit.cpp
+
+    lib/Cpp/CppClassUnit.cpp
+    lib/Cpp/CppFieldUnit.cpp
+    
+    #lib/Cpp/MethodUnit.cpp
+    #src/PrintOperator.cpp
+    #src/CppClassUnit.cpp
 )
 target_include_directories(CodeGenLib PUBLIC lib)
 

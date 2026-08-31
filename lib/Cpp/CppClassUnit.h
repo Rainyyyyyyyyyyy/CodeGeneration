@@ -14,7 +14,8 @@ private:
 
 public:
 
-    ~CppClassUnit() override;
+    ~CppClassUnit() override = default;
+    
     CppClassUnit(const std::string &name,
                  Modifiers::ClassModifiers AccMod = Modifiers::ClassModifiers::UNDEFINED)
         : IClassUnit(name), Members(AccessModifierNames.size()) {}

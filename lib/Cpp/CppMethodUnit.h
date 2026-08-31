@@ -24,7 +24,9 @@ public:
     CppMethodUnit(const std::string &name, const ArgumentTypes &returnType,
                 const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::PRIVATE)
         : IMethodUnit(name, returnType, accessModifier) {}
+        
+    ~CppMethodUnit() override = default;
 
-        std::string compile(unsigned int level=0) const override;
+    std::string compile(unsigned int level=0) const override;
 };
 #endif // CPP_METHOD_UNIT_H

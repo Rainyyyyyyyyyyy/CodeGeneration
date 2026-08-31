@@ -19,6 +19,8 @@ public:
                 const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::PRIVATE)
         : name(name), returnType(returnType),
           accessModifier(accessModifier) {}
+          
+    virtual ~IMethodUnit() = default;
 
     std::string getName() const;
     const std::vector<std::shared_ptr<Unit>>& getBody() const;

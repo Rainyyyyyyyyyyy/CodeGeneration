@@ -10,6 +10,7 @@ class CppMethodArgumentUnit : public IMethodArgumentUnit {
     CppMethodArgumentUnit(const std::string &name, const ArgumentTypes& type)
         : IMethodArgumentUnit(name, type) {}
 
+    ~CppMethodArgumentUnit() override = default;
 
     std::string compile(unsigned int level) const override;
 };

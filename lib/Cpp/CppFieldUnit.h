@@ -12,6 +12,8 @@ public:
                  const AccessModifiers &accessModifier = AccessModifiers::PRIVATE)
                  : IFieldUnit(name, type, accessModifier) {}
 
+    ~CppFieldUnit() override = default;
+    
     std::string compile(unsigned int level) const override;
 };
 

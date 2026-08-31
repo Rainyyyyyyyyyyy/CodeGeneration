@@ -32,7 +32,7 @@ class IClassUnit : public Unit {
     //static const std::vector< std::string > ACCESS_MODIFIERS; // = { "public", "protected", "private" };
 public:
     IClassUnit(const std::string& t_name);
-
+    virtual ~IClassUnit() = default;
     virtual std::string compile( unsigned int level = 0 ) const override = 0;
 
     virtual void add(const std::shared_ptr <Unit> &, Flags flags) = 0;

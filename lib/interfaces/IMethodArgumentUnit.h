@@ -20,13 +20,9 @@ protected:
     
 public:
 
-    IMethodArgumentUnit(const std::string &name, const ArgumentTypes& type){
-        if(IsValidVariableName(name) == false){     // если имя некорректно, то исключение
-            throw std::invalid_argument("Invalid argument name: " + name);
-        }
-        this->type = type;
-        this->name = name;
-    }
+    IMethodArgumentUnit(const std::string &name, const ArgumentTypes& type);
+
+    virtual ~IMethodArgumentUnit() = default;
 
     ArgumentTypes getType() const;
     std::string getName() const;

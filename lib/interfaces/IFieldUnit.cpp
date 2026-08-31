@@ -21,3 +21,8 @@ std::string IFieldUnit::getName() const
 {
     return name;
 }
+
+ArgumentTypes IFieldUnit::getType() const
+{
+    return type;
+}

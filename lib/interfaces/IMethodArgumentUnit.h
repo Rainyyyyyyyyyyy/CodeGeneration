@@ -5,36 +5,26 @@
 #include <vector>
 #include <stdexcept>
 
-
 #include "Modifiers.h"
 #include "Unit.h"
 #include "utils.h"
 
-
-
-class IMethodArgumentUnit : public Unit {         // класс для конструкции "аргумент функции"
+class IMethodArgumentUnit : public Unit
+{ // класс для конструкции "аргумент функции"
 protected:
+    ArgumentTypes type; // тип
+    std::string name;   // название
 
-    ArgumentTypes type;           // тип
-    std::string name;           // название
-    
 public:
+    explicit IMethodArgumentUnit(const std::string &name,
+                                 const ArgumentTypes &type = ArgumentTypes::UNDEFINED);
 
-    IMethodArgumentUnit(const std::string &name, const ArgumentTypes& type){
-        if(IsValidVariableName(name) == false){     // если имя некорректно, то исключение
-            throw std::invalid_argument("Invalid argument name: " + name);
-        }
-        this->type = type;
-        this->name = name;
-    }
+    virtual ~IMethodArgumentUnit() = default;
 
     ArgumentTypes getType() const;
     std::string getName() const;
 
-    std::string compile(unsigned int level=0) const = 0;
-
+    std::string compile(unsigned int level = 0) const = 0;
 };
-
-
 
 #endif // IMETHODARGUMENTUNIT_H

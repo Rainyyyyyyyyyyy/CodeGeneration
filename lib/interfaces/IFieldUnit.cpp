@@ -7,6 +7,10 @@ IFieldUnit::IFieldUnit(const std::string &name, const ArgumentTypes &type,
     { // если имя некорректно, то исключение
         throw std::invalid_argument("Invalid argument name: " + name);
     }
+    if(type == ArgumentTypes::VOID)
+    {
+        throw std::invalid_argument("Invalid field type: " + GetArgumentTypeName(type));
+    }
     this->type = type;
     this->name = name;
     this->accessModifier = accessModifier;

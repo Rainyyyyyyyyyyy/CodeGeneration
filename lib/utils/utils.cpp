@@ -27,6 +27,8 @@ std::string GetArgumentTypeName(ArgumentTypes type)
         return "std::string";
     case ArgumentTypes::BOOL:
         return "bool";
+    case ArgumentTypes::VOID:
+        return "void";
     default:
         return "int"; // по умолчанию возвращаем int, если тип не определен
     }

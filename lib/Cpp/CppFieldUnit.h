@@ -12,7 +12,7 @@ public:
                  const AccessModifiers &accessModifier = AccessModifiers::PRIVATE)
                  : IFieldUnit(name, type, accessModifier) {}
 
-    std::string compile(unsigned int level) const;
+    std::string compile(unsigned int level) const override;
 };
 
 #endif // CPPFIELDUNIT_H

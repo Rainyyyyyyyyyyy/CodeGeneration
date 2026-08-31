@@ -40,20 +40,30 @@ std::string generateProgram() {
 
 #include "CppClassUnit.h"
 #include "CppFieldUnit.h"
+#include "CppMethodUnit.h"
+#include "CppMethodArgumentUnit.h"
 int main(int argc, char *argv[])
 {
     const std::string className = "MyClass";
     CppClassUnit claca(className, Modifiers::ClassModifiers::UNDEFINED);
+    
     CppFieldUnit pub_field1("Field1", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
     CppFieldUnit priv_field2("Field2", Modifiers::ArgumentTypes::STRING, Modifiers::AccessModifiers::PRIVATE);
     CppFieldUnit prot_field3("Field3", Modifiers::ArgumentTypes::DOUBLE, Modifiers::AccessModifiers::PROTECTED);
     CppFieldUnit prot_field4("Field4", Modifiers::ArgumentTypes::UNDEFINED, Modifiers::AccessModifiers::PROTECTED);
+
+    CppMethodUnit pub_method1("Method1", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PROTECTED);
+    pub_method1.addArgument(std::make_shared<CppMethodArgumentUnit>("arg1", Modifiers::ArgumentTypes::INT));
+    pub_method1.addArgument(std::make_shared<CppMethodArgumentUnit>("arg2", Modifiers::ArgumentTypes::STRING));
+    pub_method1.add(std::make_shared<CppFieldUnit>("localVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::AccessModifiers::PRIVATE), 0);
 
     claca.add(std::make_shared<CppFieldUnit>(pub_field1), static_cast<CppClassUnit::Flags>(pub_field1.getAccessModifier()));
     claca.add(std::make_shared<CppFieldUnit>(priv_field2), static_cast<CppClassUnit::Flags>(priv_field2.getAccessModifier()));
     claca.add(std::make_shared<CppFieldUnit>(prot_field3), static_cast<CppClassUnit::Flags>(prot_field3.getAccessModifier()));
     claca.add(std::make_shared<CppFieldUnit>(prot_field4), static_cast<CppClassUnit::Flags>(prot_field4.getAccessModifier()));
 
+    claca.add(std::make_shared<CppMethodUnit>(pub_method1), static_cast<CppClassUnit::Flags>(pub_method1.getAccessModifier()));
+    //claca.add()
 
     std::string stra = "Failed\n";
     try{

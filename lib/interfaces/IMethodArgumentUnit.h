@@ -1,5 +1,5 @@
-#ifndef IFUUCARGUMENT_H
-#define IFUNCARGUMENT_H
+#ifndef IMETHODARGUMENTUNIT_H
+#define IMETHODARGUMENTUNIT_H
 
 #include <string>
 #include <vector>
@@ -7,15 +7,15 @@
 
 
 #include "Modifiers.h"
-#include "Unit.h";
+#include "Unit.h"
 #include "utils.h"
 
 
 
 class IMethodArgumentUnit : public Unit {         // класс для конструкции "аргумент функции"
-private:
+protected:
 
-    std::string type;           // тип
+    ArgumentTypes type;           // тип
     std::string name;           // название
     
 public:
@@ -24,12 +24,17 @@ public:
         if(IsValidVariableName(name) == false){     // если имя некорректно, то исключение
             throw std::invalid_argument("Invalid argument name: " + name);
         }
-        this->type = GetArgumentTypeName(type);
+        this->type = type;
         this->name = name;
     }
+
+    ArgumentTypes getType() const;
+    std::string getName() const;
+
+    std::string compile(unsigned int level=0) const = 0;
 
 };
 
 
 
-#endif // IFUNCARGUMENT_H
+#endif // IMETHODARGUMENTUNIT_H

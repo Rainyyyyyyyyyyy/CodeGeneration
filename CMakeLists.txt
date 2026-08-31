@@ -10,16 +10,24 @@ add_library(CodeGenLib
     #src/ClassUnit.cpp
     lib/interfaces/IClassUnit.cpp
     lib/interfaces/IFieldUnit.cpp
-    lib/interfaces/IMethodArgumentUnit.cpp
+    ### lib/interfaces/IMethodArgumentUnit.cpp
 
     lib/Cpp/CppClassUnit.cpp
     lib/Cpp/CppFieldUnit.cpp
+
+    lib/utils/utils.cpp
+    lib/utils/Modifiers.h
+
     
     #lib/Cpp/MethodUnit.cpp
     #src/PrintOperator.cpp
     #src/CppClassUnit.cpp
 )
-target_include_directories(CodeGenLib PUBLIC lib)
+target_include_directories(CodeGenLib PUBLIC 
+    lib/interfaces
+    lib/Cpp
+    lib/utils
+    )
 
 # Создание исполняемого файла
 add_executable(CodeGeneration main.cpp)

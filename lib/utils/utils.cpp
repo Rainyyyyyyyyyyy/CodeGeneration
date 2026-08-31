@@ -1,4 +1,16 @@
+
+
 #include "utils.h"
+
+#include <stdexcept>
+
+
+std::vector<char> InvalidSymbolsForArgumentName = {' ', '\t', '\n', '\r', '\f', '\v', '\0',
+                                                   '_', '"', '\'', '\\', '!', '@', '#', '$', '*', '%', '^', '&', '(', ')',
+                                                   '-', '+', '=', '[', ']', '{', '}', '|', '/', '?', ';', ':', '<', '>',
+                                                   ',', '.', '~', '`'}; // список символов, которые не должны быть в
+                                                                        // имени переменной\аргумента функции
+
 
 
 std::string GetArgumentTypeName(ArgumentTypes type)
@@ -17,6 +29,21 @@ std::string GetArgumentTypeName(ArgumentTypes type)
         return "bool";
     default:
         return "int"; // по умолчанию возвращаем int, если тип не определен
+    }
+}
+
+std::string GetAccessModifierName(AccessModifiers accessModifier)
+{
+    switch (accessModifier)
+    {
+    case AccessModifiers::PUBLIC:
+        return "public";
+    case AccessModifiers::PROTECTED:
+        return "protected";
+    case AccessModifiers::PRIVATE:
+        return "private";
+    default:
+        throw std::invalid_argument("Invalid access modifier"); // по умолчанию возвращаем private, если модификатор не определен
     }
 }
 

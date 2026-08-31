@@ -2,7 +2,7 @@
 #include "utils.h"
 #include <stdexcept>
 
-IClassUnit::IClassUnit(const std::string &name, ClassModifiers classModifier = ClassModifiers::UNDEFINED)
+IClassUnit::IClassUnit(const std::string &name, ClassModifiers classModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение

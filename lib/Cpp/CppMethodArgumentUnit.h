@@ -1,14 +1,13 @@
 #ifndef CPPMETHODARGUMENTUNIT_H
 #define CPPMETHODARGUMENTUNIT_H
 
-
 #include "IMethodArgumentUnit.h"
 
-class CppMethodArgumentUnit : public IMethodArgumentUnit {
-    public:
-
-    CppMethodArgumentUnit(const std::string &name, const ArgumentTypes& type)
-        : IMethodArgumentUnit(name, type) {}
+class CppMethodArgumentUnit : public IMethodArgumentUnit
+{
+public:
+    explicit CppMethodArgumentUnit(const std::string &name,
+                                   const ArgumentTypes &type = ArgumentTypes::UNDEFINED);
 
     ~CppMethodArgumentUnit() override = default;
 

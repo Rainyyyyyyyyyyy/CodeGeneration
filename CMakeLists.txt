@@ -7,17 +7,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Создание библиотеки из исходных файлов в src/
 add_library(CodeGenLib
     lib/interfaces/Unit.cpp
-    #src/ClassUnit.cpp
     lib/interfaces/IClassUnit.cpp
     lib/interfaces/IFieldUnit.cpp
     lib/interfaces/IMethodUnit.cpp
     lib/interfaces/IMethodArgumentUnit.cpp
-    ### lib/interfaces/IMethodArgumentUnit.cpp
+    lib/interfaces/IPrintOperatorUnit.cpp
 
     lib/Cpp/CppClassUnit.cpp
     lib/Cpp/CppFieldUnit.cpp
     lib/Cpp/CppMethodUnit.cpp
     lib/Cpp/CppMethodArgumentUnit.cpp
+    lib/Cpp/CppPrintOperatorUnit.cpp
 
     lib/utils/utils.cpp
     lib/utils/Modifiers.h
@@ -26,6 +26,7 @@ add_library(CodeGenLib
     #lib/Cpp/MethodUnit.cpp
     #src/PrintOperator.cpp
     #src/CppClassUnit.cpp
+    #src/ClassUnit.cpp
 )
 target_include_directories(CodeGenLib PUBLIC 
     lib/interfaces

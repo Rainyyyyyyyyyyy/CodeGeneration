@@ -18,8 +18,8 @@ protected:
 
 
 public:
-    IFieldUnit(const std::string &name, const ArgumentTypes& type,
-           const AccessModifiers& accessModifier = AccessModifiers::PRIVATE);
+    explicit IFieldUnit(const std::string &name, const ArgumentTypes& type,
+           const AccessModifiers& accessModifier = AccessModifiers::UNDEFINED);
 
     virtual ~IFieldUnit() = default;
            

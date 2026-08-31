@@ -31,7 +31,8 @@ class IClassUnit : public Unit {
 
     //static const std::vector< std::string > ACCESS_MODIFIERS; // = { "public", "protected", "private" };
 public:
-    IClassUnit(const std::string& name, ClassModifiers classModifier = ClassModifiers::UNDEFINED);
+    explicit IClassUnit(const std::string& name,
+         Modifiers::ClassModifiers classModifier = Modifiers::ClassModifiers::UNDEFINED);
     virtual ~IClassUnit() = default;
     virtual std::string compile( unsigned int level = 0 ) const override = 0;
 

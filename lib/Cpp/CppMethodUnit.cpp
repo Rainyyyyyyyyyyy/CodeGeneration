@@ -1,5 +1,9 @@
 #include "CppMethodUnit.h"
 
+CppMethodUnit::CppMethodUnit(const std::string &name, const ArgumentTypes &returnType,
+                             const Modifiers::AccessModifiers &accessModifier)
+    : IMethodUnit(name, returnType, accessModifier) {}
+
 std::string CppMethodUnit::compile(unsigned int level) const
 {
     // формирование сигнатуры функции
@@ -11,8 +15,7 @@ std::string CppMethodUnit::compile(unsigned int level) const
         {
             result += GetArgumentTypeName(arguments[i]->getType()) + ' ' + arguments[i]->getName() + ", ";
         }
-        result += GetArgumentTypeName(arguments[numberOfArguments-1]->getType()) + ' ' 
-               + arguments[numberOfArguments-1]->getName();
+        result += GetArgumentTypeName(arguments[numberOfArguments - 1]->getType()) + ' ' + arguments[numberOfArguments - 1]->getName();
     }
     result += "){\n";
 
@@ -22,7 +25,6 @@ std::string CppMethodUnit::compile(unsigned int level) const
         result += unit->compile(level + 1);
     }
 
-    result+= generateShift(level) + "}\n";
+    result += generateShift(level) + "}\n";
     return result;
-
 }

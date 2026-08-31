@@ -26,7 +26,7 @@ const std::vector<std::shared_ptr<IMethodArgumentUnit>> &IMethodUnit::getArgumen
 }
 
 IMethodUnit::IMethodUnit(const std::string &name, const ArgumentTypes &returnType,
-                         const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::PRIVATE)
+                         const Modifiers::AccessModifiers &accessModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение

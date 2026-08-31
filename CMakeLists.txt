@@ -10,10 +10,14 @@ add_library(CodeGenLib
     #src/ClassUnit.cpp
     lib/interfaces/IClassUnit.cpp
     lib/interfaces/IFieldUnit.cpp
+    lib/interfaces/IMethodUnit.cpp
+    lib/interfaces/IMethodArgumentUnit.cpp
     ### lib/interfaces/IMethodArgumentUnit.cpp
 
     lib/Cpp/CppClassUnit.cpp
     lib/Cpp/CppFieldUnit.cpp
+    lib/Cpp/CppMethodUnit.cpp
+    lib/Cpp/CppMethodArgumentUnit.cpp
 
     lib/utils/utils.cpp
     lib/utils/Modifiers.h

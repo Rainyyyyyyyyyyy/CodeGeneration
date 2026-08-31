@@ -24,6 +24,9 @@ public:
            
     Modifiers::AccessModifiers getAccessModifier() const;
     std::string getName() const;
+    ArgumentTypes getType() const;
+
+    std::string compile(unsigned int level = 0) const = 0;
 };
 
 #endif // IFIELDUNIT_H

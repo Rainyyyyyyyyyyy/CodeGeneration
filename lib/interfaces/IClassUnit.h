@@ -33,7 +33,7 @@ class IClassUnit : public Unit {
 public:
     IClassUnit(const std::string& t_name);
 
-    virtual std::string compile( unsigned int level = 0 ) const = 0;
+    virtual std::string compile( unsigned int level = 0 ) const override = 0;
 
     virtual void add(const std::shared_ptr <Unit> &, Flags flags) = 0;
 
@@ -47,14 +47,6 @@ protected:
     std::string name;                               // имя класса
     Modifiers::ClassModifiers classModifier;        // модификатор класса (abstract, final, abstract final)
     
-    std::string generateShift(unsigned int level = 0) const {
-        static const auto DEFAULT_SHIFT = " ";
-        std::string result;
-        for( unsigned int i = 0; i < level; ++i ) {
-            result += DEFAULT_SHIFT;
-        }
-        return result;
-    }
         
 };
 

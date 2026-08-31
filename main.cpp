@@ -42,6 +42,9 @@ std::string generateProgram() {
 #include "CppFieldUnit.h"
 #include "CppMethodUnit.h"
 #include "CppMethodArgumentUnit.h"
+
+
+
 int main(int argc, char *argv[])
 {
     const std::string className = "MyClass";

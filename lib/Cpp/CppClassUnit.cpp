@@ -13,7 +13,6 @@ namespace {
     }
 }   // namespace
 
-CppClassUnit::~CppClassUnit() = default;
 
 void CppClassUnit::add(const std::shared_ptr <Unit> &unit, Flags flags){
     auto AccIndex = getAccessModifierNumber(static_cast<Modifiers::AccessModifiers>(flags));

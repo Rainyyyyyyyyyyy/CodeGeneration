@@ -49,7 +49,8 @@ namespace Modifiers{
         DOUBLE = 2,
         CHAR = 3,
         STRING = 4,
-        BOOL = 5
+        BOOL = 5,
+        VOID = 6
     };
     
 } // Modifiers

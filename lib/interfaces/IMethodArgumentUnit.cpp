@@ -6,6 +6,10 @@ IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name, const Argument
     { // если имя некорректно, то исключение
         throw std::invalid_argument("Invalid argument name: " + name);
     }
+    if(type == ArgumentTypes::VOID)
+    {
+        throw std::invalid_argument("Invalid argument type: " + GetArgumentTypeName(type));
+    }
     this->type = type;
     this->name = name;
 }

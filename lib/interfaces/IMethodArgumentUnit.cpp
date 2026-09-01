@@ -1,6 +1,8 @@
 #include "IMethodArgumentUnit.h"
 
-IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name, const ArgumentTypes &type)
+IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name,
+                                 const ArgumentTypes &type,
+                                 const Modifiers::ArgumentPrefixModifiers &prefixModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение
@@ -12,6 +14,7 @@ IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name, const Argument
     }
     this->type = type;
     this->name = name;
+    this->prefixModifier = prefixModifier;
 }
 ArgumentTypes IMethodArgumentUnit::getType() const
 {
@@ -21,4 +24,7 @@ ArgumentTypes IMethodArgumentUnit::getType() const
 std::string IMethodArgumentUnit::getName() const
 {
     return name;
+}
+ArgumentPrefixModifiers IMethodArgumentUnit::getPrefixModifier() const {
+    return prefixModifier;
 }

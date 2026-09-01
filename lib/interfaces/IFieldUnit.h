@@ -8,22 +8,23 @@
 #include <stdexcept>
 #include <string>
 
-
-class IFieldUnit : public Unit{     // класс для конструкции "поле класса"
+class IFieldUnit : public Unit
+{ // класс для конструкции "поле класса"
 protected:
-    ArgumentTypes type;           // тип
-    std::string name;           // название
-    AccessModifiers accessModifier; // модификатор доступа (public, private, protected)
-
-
+    ArgumentTypes type;                     // тип
+    std::string name;                       // название
+    AccessModifiers accessModifier;         // модификатор доступа (public, private, protected)
+    ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
 
 public:
-    explicit IFieldUnit(const std::string &name, const ArgumentTypes& type,
-           const AccessModifiers& accessModifier = AccessModifiers::UNDEFINED);
+    explicit IFieldUnit(const std::string &name, const ArgumentTypes &type,
+                        const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED,
+                        const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
     virtual ~IFieldUnit() = default;
-           
+
     Modifiers::AccessModifiers getAccessModifier() const;
+    Modifiers::ArgumentPrefixModifiers getPrefixModifier() const;
     std::string getName() const;
     ArgumentTypes getType() const;
 

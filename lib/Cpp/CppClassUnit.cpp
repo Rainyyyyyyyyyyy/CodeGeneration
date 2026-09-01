@@ -49,7 +49,12 @@ std::string CppClassUnit::compile(unsigned int level) const
 }
 
 CppClassUnit::CppClassUnit(const std::string &name,
-                           Modifiers::ClassModifiers AccMod)
-    : IClassUnit(name), Members(AccessModifierNames.size()) {}
-// названия модификаторов на С++
+                           Modifiers::ClassPrefixModifiers classPrefixModifier)
+    : IClassUnit(name), Members(AccessModifierNames.size())
+{
+    this->classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED;
+}
+         // названия модификаторов на С++
+
+
 const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};

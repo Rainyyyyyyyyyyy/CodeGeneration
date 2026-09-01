@@ -38,12 +38,21 @@ std::string GetAccessModifierName(AccessModifiers accessModifier)
 {
     switch (accessModifier)
     {
-    case AccessModifiers::PUBLIC:
+    case AccessModifiers::PUBLIC: 
         return "public";
-    case AccessModifiers::PROTECTED:
+    case AccessModifiers::PROTECTED: 
         return "protected";
-    case AccessModifiers::PRIVATE:
+    case AccessModifiers::PRIVATE: 
         return "private";
+    case AccessModifiers::FILE: 
+        return "file";
+    case AccessModifiers::INTERNAL: 
+        return "internal";
+    case AccessModifiers::PROTECTED_INTERNAL: 
+        return "protected internal";
+    case AccessModifiers::PRIVATE_PROTECTED:
+        return "private protected";
+    
     default:
         throw std::invalid_argument("Invalid access modifier"); // по умолчанию возвращаем private, если модификатор не определен
     }

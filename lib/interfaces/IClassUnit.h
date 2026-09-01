@@ -7,46 +7,25 @@
 #include "Unit.h"
 #include "Modifiers.h"
 
-/*
-ClassUnit::ClassUnit( const std::string& name ) : m_name( name ) {
-    m_fields.resize( ACCESS_MODIFIERS.size() );
-}
-
-
-void ClassUnit::add( const std::shared_ptr< Unit >& unit, Flags flags ) {
-    int accessModifier = PRIVATE;
-    if( flags < ACCESS_MODIFIERS.size() ) {
-        accessModifier = flags;
-    }
-    m_fields[ accessModifier ].push_back( unit );
-}
-*/
 class IClassUnit : public Unit {
-// private:
-//     std::string name;                               // имя класса
-//     Modifiers::ClassModifiers classModifier;        // модификатор класса (abstract, final, abstract final)
 
-    //using Fields = std::vector <std::shared_ptr < Unit > >;
-    //std::vector <Fields> fields;
-
-    //static const std::vector< std::string > ACCESS_MODIFIERS; // = { "public", "protected", "private" };
 public:
     explicit IClassUnit(const std::string& name,
-         Modifiers::ClassModifiers classModifier = Modifiers::ClassModifiers::UNDEFINED);
+            const Modifiers::ClassPrefixModifiers &classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
+
     virtual ~IClassUnit() = default;
     virtual std::string compile( unsigned int level = 0 ) const override = 0;
 
     virtual void add(const std::shared_ptr <Unit> &, Flags flags) = 0;
 
 
-    Modifiers::ClassModifiers getClassModifier() const;
-
+    Modifiers::ClassPrefixModifiers GetClassPrefix() const;
     std::string getName() const;
 
 protected:
 
-    std::string name;                               // имя класса
-    Modifiers::ClassModifiers classModifier;        // модификатор класса (abstract, final, abstract final)
+    std::string name;                                           // имя класса
+    Modifiers::ClassPrefixModifiers classPrefixModifier;        // префик класса (public, private, abstract ...)
     
         
 };

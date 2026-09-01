@@ -14,15 +14,18 @@ class IMethodArgumentUnit : public Unit
 protected:
     ArgumentTypes type; // тип
     std::string name;   // название
+    ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
 
 public:
     explicit IMethodArgumentUnit(const std::string &name,
-                                 const ArgumentTypes &type = ArgumentTypes::UNDEFINED);
+                                 const ArgumentTypes &type = ArgumentTypes::UNDEFINED,
+                                 const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
     virtual ~IMethodArgumentUnit() = default;
 
     ArgumentTypes getType() const;
     std::string getName() const;
+    ArgumentPrefixModifiers getPrefixModifier() const;
 
     std::string compile(unsigned int level = 0) const = 0;
 };

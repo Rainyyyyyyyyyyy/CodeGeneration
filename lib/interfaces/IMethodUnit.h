@@ -10,6 +10,7 @@ class IMethodUnit : public Unit
 protected:
     std::string name;                                            // название метода
     Modifiers::AccessModifiers accessModifier;                   // модификатор доступа
+    Modifiers::MethodPrefixModifiers methodPrefixModifier;         // префикс метода (static, const, virtual ...)
     std::vector<std::shared_ptr<IMethodArgumentUnit>> arguments; // вектор аргументов
     std::vector<std::shared_ptr<Unit>> body;                     // тело метода (вектор вложенных элементов)
     ArgumentTypes returnType;                                    // тип возвращаемого значения

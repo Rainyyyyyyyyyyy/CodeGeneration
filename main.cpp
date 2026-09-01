@@ -48,7 +48,7 @@ std::string generateProgram() {
 int main(int argc, char *argv[])
 {
     const std::string className = "MyClass";
-    CppClassUnit claca(className, Modifiers::ClassModifiers::UNDEFINED);
+    CppClassUnit claca(className, Modifiers::ClassPrefixModifiers::UNDEFINED); //Modifiers::ClassModifiers::UNDEFINED);
     
     CppFieldUnit pub_field1("Field1", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
     CppFieldUnit priv_field2("Field2", Modifiers::ArgumentTypes::STRING, Modifiers::AccessModifiers::PRIVATE);

@@ -2,7 +2,8 @@
 #include "utils.h"
 #include <stdexcept>
 
-IClassUnit::IClassUnit(const std::string &name, ClassModifiers classModifier)
+IClassUnit::IClassUnit(const std::string &name,
+                       const Modifiers::ClassPrefixModifiers &classPrefixModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение
@@ -10,11 +11,11 @@ IClassUnit::IClassUnit(const std::string &name, ClassModifiers classModifier)
     }
 
     this->name = name;
-    this->classModifier = classModifier;
+    this->classPrefixModifier = classPrefixModifier;
 }
-Modifiers::ClassModifiers IClassUnit::getClassModifier() const
+Modifiers::ClassPrefixModifiers IClassUnit::GetClassPrefix() const
 {
-    return classModifier;
+    return classPrefixModifier;
 }
 
 std::string IClassUnit::getName() const

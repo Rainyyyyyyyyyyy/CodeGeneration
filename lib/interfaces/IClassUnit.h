@@ -25,8 +25,8 @@ public:
 protected:
 
     std::string name;                                           // имя класса
-    Modifiers::ClassPrefixModifiers classPrefixModifier;        // префик класса (public, private, abstract ...)
-    
+    Modifiers::ClassPrefixModifiers classPrefixModifier;        // префик класса (abstract, final, "")
+    Modifiers::AccessModifiers AccessModifier;                  // модификатор доступа (public
         
 };
 

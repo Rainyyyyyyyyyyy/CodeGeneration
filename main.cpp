@@ -44,6 +44,8 @@ std::string generateProgram() {
 #include "CppMethodArgumentUnit.h"
 #include "CppPrintOperatorUnit.h"
 
+#include "JavaClassUnit.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -77,9 +79,12 @@ int main(int argc, char *argv[])
     claca.add(std::make_shared<CppMethodUnit>(prot_method2), static_cast<CppClassUnit::Flags>(prot_method2.getAccessModifier()));
     //claca.add()
 
+    CppClassUnit emptyclassCpp("EmptyClass", Modifiers::ClassPrefixModifiers::UNDEFINED);
+    JavaClassUnit jclaca(className, Modifiers::ClassPrefixModifiers::FINAL); //Modifiers::ClassModifiers::UNDEFINED);
+    
     std::string stra = "Failed\n";
     try{
-        stra = claca.compile();
+        stra = jclaca.compile();
     } catch (std::invalid_argument &e){
         std::cerr << "Error: " << e.what() << std::endl;
     }

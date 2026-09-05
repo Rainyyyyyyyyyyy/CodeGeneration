@@ -8,6 +8,10 @@ CppFieldUnit::CppFieldUnit(const std::string &name, const ArgumentTypes &type,
 
 std::string CppFieldUnit::compile(unsigned int level) const
 {
+    if (IsValidVariableName(name) == false)
+    { // если имя некорректно, то исключение
+        throw std::invalid_argument("Invalid argument name: " + name);
+    }
     std::string result = generateShift(level) + GetArgumentTypeName(type) + ' ' + name + ";\n";
     return result;
 }

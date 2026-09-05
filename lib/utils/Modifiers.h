@@ -38,10 +38,8 @@ namespace Modifiers
     enum class ClassPrefixModifiers : Unit::Flags
     {                      // модификаторы классов
         UNDEFINED = 0,     // будет обрабатываться как "ничего"
-        ABSTRACT = 1 << 5, // нет в С++
-        PUBLIC = 1 << 6,
-        PROTECTED = 1 << 7,
-        PRIVATE = 1 << 8,
+        ABSTRACT = 1 << 5, // C#, Java
+        FINAL = 1 << 6,    // C#, Java
     };
 
     // enum class ClassPostfixModifiers : Unit::Flags

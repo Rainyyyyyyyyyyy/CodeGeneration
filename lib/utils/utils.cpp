@@ -4,14 +4,11 @@
 
 #include <stdexcept>
 
-
 std::vector<char> InvalidSymbolsForArgumentName = {' ', '\t', '\n', '\r', '\f', '\v', '\0',
                                                    '_', '"', '\'', '\\', '!', '@', '#', '$', '*', '%', '^', '&', '(', ')',
                                                    '-', '+', '=', '[', ']', '{', '}', '|', '/', '?', ';', ':', '<', '>',
                                                    ',', '.', '~', '`'}; // список символов, которые не должны быть в
                                                                         // имени переменной\аргумента функции
-
-
 
 std::string GetArgumentTypeName(ArgumentTypes type)
 {
@@ -38,26 +35,95 @@ std::string GetAccessModifierName(AccessModifiers accessModifier)
 {
     switch (accessModifier)
     {
-    case AccessModifiers::PUBLIC: 
+    case AccessModifiers::PUBLIC:
         return "public";
-    case AccessModifiers::PROTECTED: 
+    case AccessModifiers::PROTECTED:
         return "protected";
-    case AccessModifiers::PRIVATE: 
+    case AccessModifiers::PRIVATE:
         return "private";
-    case AccessModifiers::FILE: 
+    case AccessModifiers::FILE:
         return "file";
-    case AccessModifiers::INTERNAL: 
+    case AccessModifiers::INTERNAL:
         return "internal";
-    case AccessModifiers::PROTECTED_INTERNAL: 
+    case AccessModifiers::PROTECTED_INTERNAL:
         return "protected internal";
     case AccessModifiers::PRIVATE_PROTECTED:
         return "private protected";
-    
     default:
         throw std::invalid_argument("Invalid access modifier"); // по умолчанию возвращаем private, если модификатор не определен
     }
 }
+// получить строку с названием из enum ClassPrefixModifiers
+std::string GetClassPrefixModifierName(ClassPrefixModifiers classPrefixModifier)
+{
+    switch (classPrefixModifier)
+    {
+    case ClassPrefixModifiers::UNDEFINED:
+        return "";
+    case ClassPrefixModifiers::ABSTRACT:
+        return "abstract";
+    case ClassPrefixModifiers::FINAL:
+        return "final";
+    //case ClassPrefixModifiers::PRIVATE:
+    //    return "private";
+    //case ClassPrefixModifiers::PROTECTED:
+    //    return "protected";
+    //case ClassPrefixModifiers::PUBLIC:
+    //    return "public";
+    //case ClassPrefixModifiers::ABSTRACT:
+    //    return "abstract";
+    default:
+        throw std::invalid_argument("Invalid class prefix modifier");
+    }
+}
 
+// получить строку с названием из enum MethodPrefixModifiers
+std::string GetMethodPrefixModifierName(MethodPrefixModifiers methodPrefixModifier)
+{
+    switch (methodPrefixModifier)
+    {
+    case MethodPrefixModifiers::CONST:
+        return "const";
+    case MethodPrefixModifiers::STATIC:
+        return "static";
+    case MethodPrefixModifiers::STATIC_CONST:
+        return "static const";
+    case MethodPrefixModifiers::UNDEFINED:
+        return "";
+    case MethodPrefixModifiers::VIRTUAL:
+        return "virtual";
+    case MethodPrefixModifiers::VIRTUAL_CONST:
+        return "virtual const";
+    default:
+        throw std::invalid_argument("Invalid method prefix modifier");
+    }
+}
+
+// получить строку с названием из enum ArgumentPrefixModifiers
+std::string GetArgumentPrefixModifierName(ArgumentPrefixModifiers argumentPrefixModifier)
+{
+    switch (argumentPrefixModifier)
+    {
+    case ArgumentPrefixModifiers::CONST:
+        return "const";
+    case ArgumentPrefixModifiers::FINAL:
+        return "final";
+    case ArgumentPrefixModifiers::MUTABLE:
+        return "mutable";
+    case ArgumentPrefixModifiers::READONLY:
+        return "readonly";
+    case ArgumentPrefixModifiers::STATIC:
+        return "static";
+    case ArgumentPrefixModifiers::STATIC_CONST:
+        return "static const";
+    case ArgumentPrefixModifiers::STATIC_FINAL:
+        return "static final";
+    case ArgumentPrefixModifiers::UNDEFINED:
+        return "";
+    default:
+        throw std::invalid_argument("Invalid argument prefix modifier");
+    }
+}
 
 bool IsValidVariableName(const std::string &name)
 {
@@ -113,6 +179,29 @@ bool IsValidVariableName(const std::string &name)
             return true;
     }
 
+    for (size_t i = 0; i < namesize; i++)
+    {
+        for (char c : InvalidSymbolsForArgumentName)
+        {
+            if (name[i] == c)
+                return false;
+        }
+    }
+    return true;
+}
+
+
+// проверка имени класса
+bool IsValidClassOrMethodName(const std::string &name)
+{
+    if (name.empty())
+        return false; // пустое имя
+    if (name[0] == ' ')
+        return false;   // начинается с пробела
+    if (name[0] >= '0' && name[0] <= '9')
+        return false; // начинается с цифры
+
+    size_t namesize = name.size();
     for (size_t i = 0; i < namesize; i++)
     {
         for (char c : InvalidSymbolsForArgumentName)

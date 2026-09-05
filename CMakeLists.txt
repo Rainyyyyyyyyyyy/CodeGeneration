@@ -19,6 +19,8 @@ add_library(CodeGenLib
     lib/Cpp/CppMethodArgumentUnit.cpp
     lib/Cpp/CppPrintOperatorUnit.cpp
 
+    lib/Java/JavaClassUnit.cpp
+
     lib/utils/utils.cpp
     lib/utils/Modifiers.h
 
@@ -31,6 +33,7 @@ add_library(CodeGenLib
 target_include_directories(CodeGenLib PUBLIC 
     lib/interfaces
     lib/Cpp
+    lib/Java
     lib/utils
     )
 

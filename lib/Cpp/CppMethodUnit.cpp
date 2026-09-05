@@ -6,6 +6,10 @@ CppMethodUnit::CppMethodUnit(const std::string &name, const ArgumentTypes &retur
 
 std::string CppMethodUnit::compile(unsigned int level) const
 {
+    if(IsValidClassOrMethodName(name) == false)
+    { // если имя некорректно, то исключение
+        throw std::invalid_argument("Invalid method name: " + name);
+    }
     // формирование сигнатуры функции
     std::string result = generateShift(level) + GetArgumentTypeName(returnType) + ' ' + name + '(';
     size_t numberOfArguments = arguments.size();

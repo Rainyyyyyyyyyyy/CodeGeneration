@@ -5,10 +5,6 @@
 IClassUnit::IClassUnit(const std::string &name,
                        const Modifiers::ClassPrefixModifiers &classPrefixModifier)
 {
-    if (IsValidVariableName(name) == false)
-    { // если имя некорректно, то исключение
-        throw std::invalid_argument("Invalid argument name: " + name);
-    }
 
     this->name = name;
     this->classPrefixModifier = classPrefixModifier;

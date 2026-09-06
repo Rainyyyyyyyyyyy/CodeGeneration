@@ -17,7 +17,8 @@ protected:
 
 public:
     explicit IMethodUnit(const std::string &name, const ArgumentTypes &returnType,
-                         const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED);
+                         const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED,
+                         const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED);
 
     virtual ~IMethodUnit() = default;
 

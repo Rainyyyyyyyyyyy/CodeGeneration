@@ -1,8 +1,11 @@
 #include "CppMethodUnit.h"
 
 CppMethodUnit::CppMethodUnit(const std::string &name, const ArgumentTypes &returnType,
-                             const Modifiers::AccessModifiers &accessModifier)
-    : IMethodUnit(name, returnType, accessModifier) {}
+                             const Modifiers::AccessModifiers &accessModifier, 
+                             const Modifiers::MethodPrefixModifiers &methodPrefixModifier)
+    : IMethodUnit(name, returnType, accessModifier) {
+        this->methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED;
+    }
 
 std::string CppMethodUnit::compile(unsigned int level) const
 {

@@ -71,20 +71,19 @@ int main(int argc, char *argv[])
     CppMethodUnit pub_method1("Method1", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
     pub_method1.addArgument(std::make_shared<CppMethodArgumentUnit>("arg1", Modifiers::ArgumentTypes::INT));
     pub_method1.addArgument(std::make_shared<CppMethodArgumentUnit>("arg2", Modifiers::ArgumentTypes::STRING));
-    pub_method1.add(std::make_shared<CppFieldUnit>("localVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::AccessModifiers::PRIVATE), 0);
 
     CppMethodUnit prot_method2("Method2", Modifiers::ArgumentTypes::VOID, Modifiers::AccessModifiers::PROTECTED);
-    prot_method2.add(std::make_shared<CppPrintOperatorUnit>(printOp1), 0);
-    prot_method2.add(std::make_shared<CppPrintOperatorUnit>(printOp2), 0);
+    prot_method2.addBody(std::make_shared<CppPrintOperatorUnit>(printOp1));
+    prot_method2.addBody(std::make_shared<CppPrintOperatorUnit>(printOp2));
 
 
-    claca.add(std::make_shared<CppFieldUnit>(pub_field1), static_cast<CppClassUnit::Flags>(pub_field1.GetAccessModifier()));
-    claca.add(std::make_shared<CppFieldUnit>(priv_field2), static_cast<CppClassUnit::Flags>(priv_field2.GetAccessModifier()));
-    claca.add(std::make_shared<CppFieldUnit>(prot_field3), static_cast<CppClassUnit::Flags>(prot_field3.GetAccessModifier()));
-    claca.add(std::make_shared<CppFieldUnit>(prot_field4), static_cast<CppClassUnit::Flags>(prot_field4.GetAccessModifier()));
+    claca.addMember(std::make_shared<CppFieldUnit>(pub_field1), Modifiers::AccessModifiers::PUBLIC);
+    claca.addMember(std::make_shared<CppFieldUnit>(priv_field2), Modifiers::AccessModifiers::PRIVATE);
+    claca.addMember(std::make_shared<CppFieldUnit>(prot_field3), Modifiers::AccessModifiers::PROTECTED);
+    claca.addMember(std::make_shared<CppFieldUnit>(prot_field4), Modifiers::AccessModifiers::PROTECTED);
 
-    claca.add(std::make_shared<CppMethodUnit>(pub_method1), static_cast<CppClassUnit::Flags>(pub_method1.GetAccessModifier()));
-    claca.add(std::make_shared<CppMethodUnit>(prot_method2), static_cast<CppClassUnit::Flags>(prot_method2.GetAccessModifier()));
+    claca.addMember(std::make_shared<CppMethodUnit>(pub_method1), Modifiers::AccessModifiers::PUBLIC);
+    claca.addMember(std::make_shared<CppMethodUnit>(prot_method2), Modifiers::AccessModifiers::PROTECTED);
     //claca.add()
 
 
@@ -105,8 +104,8 @@ int main(int argc, char *argv[])
     jmethod1.addArgument(std::make_shared<JavaMethodArgumentUnit>(jarg2));
     jmethod2.addArgument(std::make_shared<JavaMethodArgumentUnit>(jarg3));
     
-    jclaca.add(std::make_shared<JavaMethodUnit>(jmethod1), static_cast<JavaClassUnit::Flags>(jmethod1.GetAccessModifier()));
-    jclaca.add(std::make_shared<JavaMethodUnit>(jmethod2), static_cast<JavaClassUnit::Flags>(jmethod2.GetAccessModifier()));
+    jclaca.addMember(std::make_shared<JavaMethodUnit>(jmethod1), Modifiers::AccessModifiers::PUBLIC);
+    jclaca.addMember(std::make_shared<JavaMethodUnit>(jmethod2), Modifiers::AccessModifiers::PRIVATE);
     
 
     ///
@@ -117,13 +116,14 @@ int main(int argc, char *argv[])
     auto cppFieldUnit = cppFactory.createFieldUnit("myField", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
     auto cppMethodUnit = cppFactory.createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID, Modifiers::AccessModifiers::PRIVATE);
     auto cppMethodArgUnit = cppFactory.createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
-    cppClassUnit->add(cppFieldUnit, static_cast<CppClassUnit::Flags>(cppFieldUnit->GetAccessModifier()));
-    cppClassUnit->add(cppMethodUnit, static_cast<CppClassUnit::Flags>(cppMethodUnit->GetAccessModifier()));
+    cppClassUnit->addMember(cppFieldUnit, Modifiers::AccessModifiers::PUBLIC);
+    cppClassUnit->addMember(cppMethodUnit, Modifiers::AccessModifiers::PRIVATE);
+    cppMethodUnit->addArgument(cppMethodArgUnit);
     
     
     std::string stra = "Failed\n";
     try{
-        stra = cppClassUnit->compile();
+        stra = jclaca.compile();
     } catch (std::invalid_argument &e){
         std::cerr << "Error: " << e.what() << std::endl;
     }

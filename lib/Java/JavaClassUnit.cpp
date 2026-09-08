@@ -46,9 +46,10 @@ JavaClassUnit::JavaClassUnit(const std::string &name,
     this->classPrefixModifier = classPrefixModifier;
 }
 
-void JavaClassUnit::add(const std::shared_ptr<Unit> &unit, Flags flags)
+void JavaClassUnit::addMember(const std::shared_ptr<Unit> &unit,
+                              Modifiers::AccessModifiers accessModifier)
 {
-    auto AccIndex = getAccessModifierNumber(static_cast<Modifiers::AccessModifiers>(flags));
+    auto AccIndex = getAccessModifierNumber(accessModifier);
     if (AccIndex >= Members.size())
     {
         Members.resize(AccIndex + 1);

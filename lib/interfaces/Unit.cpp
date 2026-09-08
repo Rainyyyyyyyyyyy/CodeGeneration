@@ -1,5 +1,4 @@
 #include "Unit.h"
-#include <stdexcept>
 
     /* add() - Виртуальная функция-член предназначена для добавления
             вложенных элементов (передача происходит через умный указатель)
@@ -7,9 +6,9 @@
     Также эта функция принимает параметр Flags.
     По умолчанию add() выбрасывает исключение.
     */
-    void Unit::add( const std::shared_ptr< Unit >& , Flags ) {
-        throw std::runtime_error( "Not supported" );
-    }
+    // void Unit::add( const std::shared_ptr< Unit >& , Flags ) {
+    //     throw std::runtime_error( "Not supported" );
+    // }
 
     /* generateShift() - Вспомогательная функция-член всего лишь
             возвращает строку, состоящую из нужного числа пробелов. Результат

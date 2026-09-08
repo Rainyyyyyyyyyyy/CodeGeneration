@@ -1,9 +1,9 @@
 #ifndef IPRINTOPERATOR_H
 #define IPRINTOPERATOR_H
 
-#include "Unit.h"
+#include "IStatementUnit.h"
 
-class IPrintOperatorUnit : public Unit {
+class IPrintOperatorUnit : public IStatementUnit {
 public:
     explicit IPrintOperatorUnit( const std::string& text ); // : m_text( text )  { }
     virtual ~IPrintOperatorUnit() = default;

@@ -20,7 +20,7 @@ void IMethodUnit::addArgument(const std::shared_ptr<IMethodArgumentUnit> &argume
 {
     arguments.push_back(argument);
 }
-void IMethodUnit::add(const std::shared_ptr<Unit> &unit, Flags flags)
+void IMethodUnit::addBody(const std::shared_ptr<IStatementUnit> &statement)
 {
-    body.push_back(unit);
+    body.push_back(statement);
 }

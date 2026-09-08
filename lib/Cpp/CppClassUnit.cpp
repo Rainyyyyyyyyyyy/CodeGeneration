@@ -1,5 +1,6 @@
 #include "CppClassUnit.h"
 #include <stdexcept>
+#include "utils.h"
 
 namespace
 {
@@ -31,6 +32,10 @@ void CppClassUnit::add(const std::shared_ptr<Unit> &unit, Flags flags)
 
 std::string CppClassUnit::compile(unsigned int level) const
 {
+    if (IsValidVariableName(name) == false)
+    { // если имя некорректно, то исключение
+        throw std::invalid_argument("Invalid argument name: " + name);
+    }
     std::string result = generateShift(level) + "class " + name + " {\n";
     if (Members.size() < AccessModifierNames.size())
     {
@@ -38,6 +43,10 @@ std::string CppClassUnit::compile(unsigned int level) const
     }
     for (size_t i = 0; i < AccessModifierNames.size(); ++i)
     {
+        if(Members[i].empty())
+        {
+            continue;
+        }
         result += generateShift(level) + AccessModifierNames[i] + ":\n";
         for (const auto &unit : Members[i])
         {
@@ -49,7 +58,12 @@ std::string CppClassUnit::compile(unsigned int level) const
 }
 
 CppClassUnit::CppClassUnit(const std::string &name,
-                           Modifiers::ClassModifiers AccMod)
-    : IClassUnit(name), Members(AccessModifierNames.size()) {}
-// названия модификаторов на С++
+                           Modifiers::ClassPrefixModifiers classPrefixModifier)
+    : IClassUnit(name), Members(AccessModifierNames.size())
+{
+    this->classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED;
+}
+         // названия модификаторов на С++
+
+
 const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};

@@ -3,26 +3,34 @@
 
 #include <string>
 #include <vector>
-#include <stdexcept>
 
 #include "Modifiers.h"
 #include "Unit.h"
-#include "utils.h"
 
 class IMethodArgumentUnit : public Unit
 { // класс для конструкции "аргумент функции"
 protected:
-    ArgumentTypes type; // тип
+    Modifiers::ArgumentTypes type; // тип
     std::string name;   // название
+    Modifiers::ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
 
 public:
     explicit IMethodArgumentUnit(const std::string &name,
-                                 const ArgumentTypes &type = ArgumentTypes::UNDEFINED);
+                                 const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
+                                 const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
     virtual ~IMethodArgumentUnit() = default;
 
-    ArgumentTypes getType() const;
-    std::string getName() const;
+    inline const Modifiers::ArgumentTypes &GetType() const { return type; }
+    inline Flags GetTypeAsFlags() const { return static_cast<Flags>(type); }
+    void SetType(const Modifiers::ArgumentTypes &type);
+
+    inline const std::string &GetName() const { return name; }
+    void SetName(const std::string &name);
+    
+    inline const Modifiers::ArgumentPrefixModifiers &GetPrefixModifier() const { return prefixModifier; }
+    inline Flags GetPrefixModifierAsFlags() const { return static_cast<Flags>(prefixModifier); }
+    void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);
 
     std::string compile(unsigned int level = 0) const = 0;
 };

@@ -3,7 +3,7 @@
 
 #include "IClassUnit.h"
 
-class CppClassUnit : public IClassUnit
+class JavaClassUnit : public IClassUnit
 {
 private:
     static const std::vector<std::string> AccessModifierNames;
@@ -15,9 +15,9 @@ private:
                                  // для определенного модификатора доступа
 
 public:
-    ~CppClassUnit() override = default;
+    ~JavaClassUnit() override = default;
 
-    explicit CppClassUnit(const std::string &name,
+    explicit JavaClassUnit(const std::string &name,
                         Modifiers::ClassPrefixModifiers classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
          
     void add(const std::shared_ptr<Unit> &unit, Flags flags) override;

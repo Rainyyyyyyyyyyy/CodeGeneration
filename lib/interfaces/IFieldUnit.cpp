@@ -1,32 +1,22 @@
-#include "IFieldUnit.h"
+#include <stdexcept> 
 
-IFieldUnit::IFieldUnit(const std::string &name, const ArgumentTypes &type,
-                       const AccessModifiers &accessModifier)
+#include "IFieldUnit.h"
+#include "utils.h"
+
+IFieldUnit::IFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type,
+                       const Modifiers::AccessModifiers &accessModifier,
+                       const Modifiers::ArgumentPrefixModifiers &prefixModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение
         throw std::invalid_argument("Invalid argument name: " + name);
     }
-    if(type == ArgumentTypes::VOID)
+    if (type == Modifiers::ArgumentTypes::VOID)
     {
         throw std::invalid_argument("Invalid field type: " + GetArgumentTypeName(type));
     }
     this->type = type;
     this->name = name;
     this->accessModifier = accessModifier;
-}
-
-Modifiers::AccessModifiers IFieldUnit::getAccessModifier() const
-{
-    return accessModifier;
-}
-
-std::string IFieldUnit::getName() const
-{
-    return name;
-}
-
-ArgumentTypes IFieldUnit::getType() const
-{
-    return type;
+    this->prefixModifier = prefixModifier;
 }

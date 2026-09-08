@@ -1,24 +1,21 @@
 #include "IMethodArgumentUnit.h"
+#include "utils.h"
 
-IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name, const ArgumentTypes &type)
+#include <stdexcept>
+
+IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name,
+                                         const Modifiers::ArgumentTypes &type,
+                                         const Modifiers::ArgumentPrefixModifiers &prefixModifier)
 {
     if (IsValidVariableName(name) == false)
     { // если имя некорректно, то исключение
         throw std::invalid_argument("Invalid argument name: " + name);
     }
-    if(type == ArgumentTypes::VOID)
+    if (type == Modifiers::ArgumentTypes::VOID)
     {
         throw std::invalid_argument("Invalid argument type: " + GetArgumentTypeName(type));
     }
     this->type = type;
     this->name = name;
-}
-ArgumentTypes IMethodArgumentUnit::getType() const
-{
-    return type;
-}
-
-std::string IMethodArgumentUnit::getName() const
-{
-    return name;
+    this->prefixModifier = prefixModifier;
 }

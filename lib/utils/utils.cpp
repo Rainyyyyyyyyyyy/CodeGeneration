@@ -4,51 +4,126 @@
 
 #include <stdexcept>
 
-
 std::vector<char> InvalidSymbolsForArgumentName = {' ', '\t', '\n', '\r', '\f', '\v', '\0',
                                                    '_', '"', '\'', '\\', '!', '@', '#', '$', '*', '%', '^', '&', '(', ')',
                                                    '-', '+', '=', '[', ']', '{', '}', '|', '/', '?', ';', ':', '<', '>',
                                                    ',', '.', '~', '`'}; // список символов, которые не должны быть в
                                                                         // имени переменной\аргумента функции
 
-
-
-std::string GetArgumentTypeName(ArgumentTypes type)
+std::string GetArgumentTypeName(Modifiers::ArgumentTypes type)
 {
     switch (type)
     {
-    case ArgumentTypes::INT:
+    case Modifiers::ArgumentTypes::INT:
         return "int";
-    case ArgumentTypes::DOUBLE:
+    case Modifiers::ArgumentTypes::DOUBLE:
         return "double";
-    case ArgumentTypes::CHAR:
+    case Modifiers::ArgumentTypes::CHAR:
         return "char";
-    case ArgumentTypes::STRING:
+    case Modifiers::ArgumentTypes::STRING:
         return "std::string";
-    case ArgumentTypes::BOOL:
+    case Modifiers::ArgumentTypes::BOOL:
         return "bool";
-    case ArgumentTypes::VOID:
+    case Modifiers::ArgumentTypes::VOID:
         return "void";
     default:
         return "int"; // по умолчанию возвращаем int, если тип не определен
     }
 }
 
-std::string GetAccessModifierName(AccessModifiers accessModifier)
+std::string GetAccessModifierName(Modifiers::AccessModifiers accessModifier)
 {
     switch (accessModifier)
     {
-    case AccessModifiers::PUBLIC:
+    case Modifiers::AccessModifiers::PUBLIC:
         return "public";
-    case AccessModifiers::PROTECTED:
+    case Modifiers::AccessModifiers::PROTECTED:
         return "protected";
-    case AccessModifiers::PRIVATE:
+    case Modifiers::AccessModifiers::PRIVATE:
         return "private";
+    case Modifiers::AccessModifiers::FILE:
+        return "file";
+    case Modifiers::AccessModifiers::INTERNAL:
+        return "internal";
+    case Modifiers::AccessModifiers::PROTECTED_INTERNAL:
+        return "protected internal";
+    case Modifiers::AccessModifiers::PRIVATE_PROTECTED:
+        return "private protected";
     default:
         throw std::invalid_argument("Invalid access modifier"); // по умолчанию возвращаем private, если модификатор не определен
     }
 }
+// получить строку с названием из enum ClassPrefixModifiers
+std::string GetClassPrefixModifierName(Modifiers::ClassPrefixModifiers classPrefixModifier)
+{
+    switch (classPrefixModifier)
+    {
+    case Modifiers::ClassPrefixModifiers::UNDEFINED:
+        return "";
+    case Modifiers::ClassPrefixModifiers::ABSTRACT:
+        return "abstract";
+    case Modifiers::ClassPrefixModifiers::FINAL:
+        return "final";
+    //case ClassPrefixModifiers::PRIVATE:
+    //    return "private";
+    //case ClassPrefixModifiers::PROTECTED:
+    //    return "protected";
+    //case ClassPrefixModifiers::PUBLIC:
+    //    return "public";
+    //case ClassPrefixModifiers::ABSTRACT:
+    //    return "abstract";
+    default:
+        throw std::invalid_argument("Invalid class prefix modifier");
+    }
+}
 
+// получить строку с названием из enum MethodPrefixModifiers
+std::string GetMethodPrefixModifierName(Modifiers::MethodPrefixModifiers methodPrefixModifier)
+{
+    switch (methodPrefixModifier)
+    {
+    case Modifiers::MethodPrefixModifiers::CONST:
+        return "const";
+    case Modifiers::MethodPrefixModifiers::STATIC:
+        return "static";
+    case Modifiers::MethodPrefixModifiers::STATIC_CONST:
+        return "static const";
+    case Modifiers::MethodPrefixModifiers::UNDEFINED:
+        return "";
+    case Modifiers::MethodPrefixModifiers::VIRTUAL:
+        return "virtual";
+    case Modifiers::MethodPrefixModifiers::VIRTUAL_CONST:
+        return "virtual const";
+    default:
+        throw std::invalid_argument("Invalid method prefix modifier");
+    }
+}
+
+// получить строку с названием из enum ArgumentPrefixModifiers
+std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers argumentPrefixModifier)
+{
+    switch (argumentPrefixModifier)
+    {
+    case Modifiers::ArgumentPrefixModifiers::CONST:
+        return "const";
+    case Modifiers::ArgumentPrefixModifiers::FINAL:
+        return "final";
+    case Modifiers::ArgumentPrefixModifiers::MUTABLE:
+        return "mutable";
+    case Modifiers::ArgumentPrefixModifiers::READONLY:
+        return "readonly";
+    case Modifiers::ArgumentPrefixModifiers::STATIC:
+        return "static";
+    case Modifiers::ArgumentPrefixModifiers::STATIC_CONST:
+        return "static const";
+    case Modifiers::ArgumentPrefixModifiers::STATIC_FINAL:
+        return "static final";
+    case Modifiers::ArgumentPrefixModifiers::UNDEFINED:
+        return "";
+    default:
+        throw std::invalid_argument("Invalid argument prefix modifier");
+    }
+}
 
 bool IsValidVariableName(const std::string &name)
 {
@@ -104,6 +179,29 @@ bool IsValidVariableName(const std::string &name)
             return true;
     }
 
+    for (size_t i = 0; i < namesize; i++)
+    {
+        for (char c : InvalidSymbolsForArgumentName)
+        {
+            if (name[i] == c)
+                return false;
+        }
+    }
+    return true;
+}
+
+
+// проверка имени класса
+bool IsValidClassOrMethodName(const std::string &name)
+{
+    if (name.empty())
+        return false; // пустое имя
+    if (name[0] == ' ')
+        return false;   // начинается с пробела
+    if (name[0] >= '0' && name[0] <= '9')
+        return false; // начинается с цифры
+
+    size_t namesize = name.size();
     for (size_t i = 0; i < namesize; i++)
     {
         for (char c : InvalidSymbolsForArgumentName)

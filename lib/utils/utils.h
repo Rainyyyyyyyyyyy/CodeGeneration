@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-using namespace Modifiers;
+
 
 /*
 AccessModifiers //
@@ -16,19 +16,19 @@ ArgumentTypes //
 ArgumentPrefixModifiers
 */
 // получить строку с названием из enum ArgumentTypes
-std::string GetArgumentTypeName(ArgumentTypes type);
+std::string GetArgumentTypeName(Modifiers::ArgumentTypes type);
 
 // получить строку с названием из enum AccessModifiers
-std::string GetAccessModifierName(AccessModifiers accessModifier);
+std::string GetAccessModifierName(Modifiers::AccessModifiers accessModifier);
 
 // получить строку с названием из enum ClassPrefixModifiers
-std::string GetClassPrefixModifierName(ClassPrefixModifiers classPrefixModifier);
+std::string GetClassPrefixModifierName(Modifiers::ClassPrefixModifiers classPrefixModifier);
 
 // получить строку с названием из enum MethodPrefixModifiers
-std::string GetMethodPrefixModifierName(MethodPrefixModifiers methodPrefixModifier);
+std::string GetMethodPrefixModifierName(Modifiers::MethodPrefixModifiers methodPrefixModifier);
 
 // получить строку с названием из enum ArgumentPrefixModifiers
-std::string GetArgumentPrefixModifierName(ArgumentPrefixModifiers argumentPrefixModifier);
+std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers argumentPrefixModifier);
 
 
 // проверка имени аргумента функции\поля класса

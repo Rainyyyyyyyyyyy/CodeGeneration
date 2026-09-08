@@ -1,10 +1,12 @@
 #include "CppFieldUnit.h"
+#include "utils.h"
+#include <stdexcept>
 
 const std::vector<std::string> CppFieldUnit::AccessModifiersNames = {"public", "protected", "private"};
 
-CppFieldUnit::CppFieldUnit(const std::string &name, const ArgumentTypes &type,
-                           const AccessModifiers &accessModifier)
-    : IFieldUnit(name, type, accessModifier) {}
+CppFieldUnit::CppFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type,
+                           const Modifiers::AccessModifiers &accessModifier, const Modifiers::ArgumentPrefixModifiers &prefixModifier)
+    : IFieldUnit(name, type, accessModifier, prefixModifier) {}
 
 std::string CppFieldUnit::compile(unsigned int level) const
 {

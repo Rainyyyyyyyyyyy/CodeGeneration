@@ -9,15 +9,6 @@ IClassUnit::IClassUnit(const std::string &name,
     this->name = name;
     this->classPrefixModifier = classPrefixModifier;
 }
-Modifiers::ClassPrefixModifiers IClassUnit::GetClassPrefix() const
-{
-    return classPrefixModifier;
-}
-
-std::string IClassUnit::getName() const
-{
-    return name;
-}
 // std::string IClassUnit::compile( unsigned int level ) const = 0 {
 //     std::string result = generateShift( level ) + "class " + name + " {\n";
 //         for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i ) {

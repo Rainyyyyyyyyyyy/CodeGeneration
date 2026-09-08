@@ -1,6 +1,7 @@
 #include "CppMethodUnit.h"
-
-CppMethodUnit::CppMethodUnit(const std::string &name, const ArgumentTypes &returnType,
+#include "utils.h"
+#include <stdexcept>
+CppMethodUnit::CppMethodUnit(const std::string &name, const Modifiers::ArgumentTypes &returnType,
                              const Modifiers::AccessModifiers &accessModifier, 
                              const Modifiers::MethodPrefixModifiers &methodPrefixModifier)
     : IMethodUnit(name, returnType, accessModifier) {
@@ -20,9 +21,9 @@ std::string CppMethodUnit::compile(unsigned int level) const
     {
         for (size_t i = 0; i < numberOfArguments - 1; i++)
         {
-            result += GetArgumentTypeName(arguments[i]->getType()) + ' ' + arguments[i]->getName() + ", ";
+            result += GetArgumentTypeName(arguments[i]->GetType()) + ' ' + arguments[i]->GetName() + ", ";
         }
-        result += GetArgumentTypeName(arguments[numberOfArguments - 1]->getType()) + ' ' + arguments[numberOfArguments - 1]->getName();
+        result += GetArgumentTypeName(arguments[numberOfArguments - 1]->GetType()) + ' ' + arguments[numberOfArguments - 1]->GetName();
     }
     result += "){\n";
 

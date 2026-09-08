@@ -10,59 +10,59 @@ std::vector<char> InvalidSymbolsForArgumentName = {' ', '\t', '\n', '\r', '\f', 
                                                    ',', '.', '~', '`'}; // список символов, которые не должны быть в
                                                                         // имени переменной\аргумента функции
 
-std::string GetArgumentTypeName(ArgumentTypes type)
+std::string GetArgumentTypeName(Modifiers::ArgumentTypes type)
 {
     switch (type)
     {
-    case ArgumentTypes::INT:
+    case Modifiers::ArgumentTypes::INT:
         return "int";
-    case ArgumentTypes::DOUBLE:
+    case Modifiers::ArgumentTypes::DOUBLE:
         return "double";
-    case ArgumentTypes::CHAR:
+    case Modifiers::ArgumentTypes::CHAR:
         return "char";
-    case ArgumentTypes::STRING:
+    case Modifiers::ArgumentTypes::STRING:
         return "std::string";
-    case ArgumentTypes::BOOL:
+    case Modifiers::ArgumentTypes::BOOL:
         return "bool";
-    case ArgumentTypes::VOID:
+    case Modifiers::ArgumentTypes::VOID:
         return "void";
     default:
         return "int"; // по умолчанию возвращаем int, если тип не определен
     }
 }
 
-std::string GetAccessModifierName(AccessModifiers accessModifier)
+std::string GetAccessModifierName(Modifiers::AccessModifiers accessModifier)
 {
     switch (accessModifier)
     {
-    case AccessModifiers::PUBLIC:
+    case Modifiers::AccessModifiers::PUBLIC:
         return "public";
-    case AccessModifiers::PROTECTED:
+    case Modifiers::AccessModifiers::PROTECTED:
         return "protected";
-    case AccessModifiers::PRIVATE:
+    case Modifiers::AccessModifiers::PRIVATE:
         return "private";
-    case AccessModifiers::FILE:
+    case Modifiers::AccessModifiers::FILE:
         return "file";
-    case AccessModifiers::INTERNAL:
+    case Modifiers::AccessModifiers::INTERNAL:
         return "internal";
-    case AccessModifiers::PROTECTED_INTERNAL:
+    case Modifiers::AccessModifiers::PROTECTED_INTERNAL:
         return "protected internal";
-    case AccessModifiers::PRIVATE_PROTECTED:
+    case Modifiers::AccessModifiers::PRIVATE_PROTECTED:
         return "private protected";
     default:
         throw std::invalid_argument("Invalid access modifier"); // по умолчанию возвращаем private, если модификатор не определен
     }
 }
 // получить строку с названием из enum ClassPrefixModifiers
-std::string GetClassPrefixModifierName(ClassPrefixModifiers classPrefixModifier)
+std::string GetClassPrefixModifierName(Modifiers::ClassPrefixModifiers classPrefixModifier)
 {
     switch (classPrefixModifier)
     {
-    case ClassPrefixModifiers::UNDEFINED:
+    case Modifiers::ClassPrefixModifiers::UNDEFINED:
         return "";
-    case ClassPrefixModifiers::ABSTRACT:
+    case Modifiers::ClassPrefixModifiers::ABSTRACT:
         return "abstract";
-    case ClassPrefixModifiers::FINAL:
+    case Modifiers::ClassPrefixModifiers::FINAL:
         return "final";
     //case ClassPrefixModifiers::PRIVATE:
     //    return "private";
@@ -78,21 +78,21 @@ std::string GetClassPrefixModifierName(ClassPrefixModifiers classPrefixModifier)
 }
 
 // получить строку с названием из enum MethodPrefixModifiers
-std::string GetMethodPrefixModifierName(MethodPrefixModifiers methodPrefixModifier)
+std::string GetMethodPrefixModifierName(Modifiers::MethodPrefixModifiers methodPrefixModifier)
 {
     switch (methodPrefixModifier)
     {
-    case MethodPrefixModifiers::CONST:
+    case Modifiers::MethodPrefixModifiers::CONST:
         return "const";
-    case MethodPrefixModifiers::STATIC:
+    case Modifiers::MethodPrefixModifiers::STATIC:
         return "static";
-    case MethodPrefixModifiers::STATIC_CONST:
+    case Modifiers::MethodPrefixModifiers::STATIC_CONST:
         return "static const";
-    case MethodPrefixModifiers::UNDEFINED:
+    case Modifiers::MethodPrefixModifiers::UNDEFINED:
         return "";
-    case MethodPrefixModifiers::VIRTUAL:
+    case Modifiers::MethodPrefixModifiers::VIRTUAL:
         return "virtual";
-    case MethodPrefixModifiers::VIRTUAL_CONST:
+    case Modifiers::MethodPrefixModifiers::VIRTUAL_CONST:
         return "virtual const";
     default:
         throw std::invalid_argument("Invalid method prefix modifier");
@@ -100,25 +100,25 @@ std::string GetMethodPrefixModifierName(MethodPrefixModifiers methodPrefixModifi
 }
 
 // получить строку с названием из enum ArgumentPrefixModifiers
-std::string GetArgumentPrefixModifierName(ArgumentPrefixModifiers argumentPrefixModifier)
+std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers argumentPrefixModifier)
 {
     switch (argumentPrefixModifier)
     {
-    case ArgumentPrefixModifiers::CONST:
+    case Modifiers::ArgumentPrefixModifiers::CONST:
         return "const";
-    case ArgumentPrefixModifiers::FINAL:
+    case Modifiers::ArgumentPrefixModifiers::FINAL:
         return "final";
-    case ArgumentPrefixModifiers::MUTABLE:
+    case Modifiers::ArgumentPrefixModifiers::MUTABLE:
         return "mutable";
-    case ArgumentPrefixModifiers::READONLY:
+    case Modifiers::ArgumentPrefixModifiers::READONLY:
         return "readonly";
-    case ArgumentPrefixModifiers::STATIC:
+    case Modifiers::ArgumentPrefixModifiers::STATIC:
         return "static";
-    case ArgumentPrefixModifiers::STATIC_CONST:
+    case Modifiers::ArgumentPrefixModifiers::STATIC_CONST:
         return "static const";
-    case ArgumentPrefixModifiers::STATIC_FINAL:
+    case Modifiers::ArgumentPrefixModifiers::STATIC_FINAL:
         return "static final";
-    case ArgumentPrefixModifiers::UNDEFINED:
+    case Modifiers::ArgumentPrefixModifiers::UNDEFINED:
         return "";
     default:
         throw std::invalid_argument("Invalid argument prefix modifier");

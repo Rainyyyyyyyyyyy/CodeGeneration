@@ -9,7 +9,7 @@ protected:
     Modifiers::AccessModifiers accessModifier;      // модификатор доступа
     std::vector<std::shared_ptr<IMethodArgumentUnit>> arguments; // вектор аргументов
     std::vector<std::shared_ptr<Unit>> body; // тело метода (вектор вложенных элементов)
-    ArgumentTypes returnType;       // тип возвращаемого значения
+    Modifiers::ArgumentTypes returnType;       // тип возвращаемого значения
 
 public:
 
@@ -22,7 +22,7 @@ class CppMethodUnit : public IMethodUnit
 {
 public:
     explicit CppMethodUnit(const std::string &name,
-                           const ArgumentTypes &returnType = ArgumentTypes::VOID,
+                           const Modifiers::ArgumentTypes &returnType = Modifiers::ArgumentTypes::VOID,
                            const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED, 
                            const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED);
 

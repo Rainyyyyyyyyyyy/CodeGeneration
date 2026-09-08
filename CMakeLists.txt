@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Создание библиотеки из исходных файлов в src/
 add_library(CodeGenLib
+    lib/Factory/IFactory.cpp
+    lib/Factory/CppFactory.cpp
+    #lib/Factory/JavaFactory.cpp
+
     lib/interfaces/Unit.cpp
     lib/interfaces/IClassUnit.cpp
     lib/interfaces/IFieldUnit.cpp
@@ -20,6 +24,9 @@ add_library(CodeGenLib
     lib/Cpp/CppPrintOperatorUnit.cpp
 
     lib/Java/JavaClassUnit.cpp
+    lib/Java/JavaMethodUnit.cpp
+    lib/Java/JavaMethodArgumentUnit.cpp
+    lib/Java/JavaFieldUnit.cpp
 
     lib/utils/utils.cpp
     lib/utils/Modifiers.h
@@ -35,6 +42,7 @@ target_include_directories(CodeGenLib PUBLIC
     lib/Cpp
     lib/Java
     lib/utils
+    lib/Factory
     )
 
 # Создание исполняемого файла

@@ -22,14 +22,12 @@ public:
     virtual ~IMethodArgumentUnit() = default;
 
     inline const Modifiers::ArgumentTypes &GetType() const { return type; }
-    inline Flags GetTypeAsFlags() const { return static_cast<Flags>(type); }
     void SetType(const Modifiers::ArgumentTypes &type);
 
     inline const std::string &GetName() const { return name; }
     void SetName(const std::string &name);
     
     inline const Modifiers::ArgumentPrefixModifiers &GetPrefixModifier() const { return prefixModifier; }
-    inline Flags GetPrefixModifierAsFlags() const { return static_cast<Flags>(prefixModifier); }
     void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);
 
     std::string compile(unsigned int level = 0) const = 0;

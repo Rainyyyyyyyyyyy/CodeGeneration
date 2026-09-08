@@ -20,7 +20,8 @@ public:
     explicit JavaClassUnit(const std::string &name,
                            Modifiers::ClassPrefixModifiers classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
 
-    void add(const std::shared_ptr<Unit> &unit, Flags flags) override;
+    void addMember(const std::shared_ptr<Unit> &unit,
+                   Modifiers::AccessModifiers accessModifier) override;
     std::string compile(unsigned int level = 0) const override;
 };
 

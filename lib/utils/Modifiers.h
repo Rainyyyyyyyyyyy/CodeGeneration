@@ -5,7 +5,7 @@
 
 namespace Modifiers
 {
-    enum class AccessModifiers : Unit::Flags
+    enum class AccessModifiers : unsigned int
     { // модификаторы доступа член-функций и член-данных
         UNDEFINED = 0,
         PRIVATE = 1,                               // C++ C# Java
@@ -17,7 +17,7 @@ namespace Modifiers
         PUBLIC = 1 << 4                            // C++ C# Java
     };
 
-    enum class MethodPrefixModifiers : Unit::Flags
+    enum class MethodPrefixModifiers : unsigned int
     {                                    // модификаторы методов
         UNDEFINED = 0,                   // будет обрабатываться как "ничего"
         STATIC = 1 << 0,                 // C++ C# Java
@@ -35,7 +35,7 @@ namespace Modifiers
     //     FINAL = 1 << 3
     // };
 
-    enum class ClassPrefixModifiers : Unit::Flags
+    enum class ClassPrefixModifiers : unsigned int
     {                      // модификаторы классов
         UNDEFINED = 0,     // будет обрабатываться как "ничего"
         ABSTRACT = 1 << 5, // C#, Java
@@ -48,7 +48,7 @@ namespace Modifiers
     //     FINAL = 1 << 9,
     // };
 
-    enum class ArgumentTypes : Unit::Flags
+    enum class ArgumentTypes : unsigned int
     { // типы аргументов функции
         UNDEFINED = 0,
         INT = 1,
@@ -59,7 +59,7 @@ namespace Modifiers
         VOID = 6
     };
 
-    enum class ArgumentPrefixModifiers : Unit::Flags
+    enum class ArgumentPrefixModifiers : unsigned int
     { // префиксы аргументов функции
         UNDEFINED = 0,
         STATIC = 1 << 0,               // C++ C# Java

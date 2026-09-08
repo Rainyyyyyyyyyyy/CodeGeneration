@@ -11,7 +11,8 @@ class IClassUnit : public Unit {
 
 public:
     explicit IClassUnit(const std::string& name,
-            const Modifiers::ClassPrefixModifiers &classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
+            const Modifiers::ClassPrefixModifiers &classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED, 
+            const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED);
 
     virtual ~IClassUnit() = default;
     virtual std::string compile( unsigned int level = 0 ) const override = 0;

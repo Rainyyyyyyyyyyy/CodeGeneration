@@ -3,13 +3,11 @@
 #include <stdexcept>
 
 IClassUnit::IClassUnit(const std::string &name,
-                       const Modifiers::ClassPrefixModifiers &classPrefixModifier, 
-                       const Modifiers::AccessModifiers &accessModifier)
+                       const Modifiers::ClassPrefixModifiers &classPrefixModifier)
 {
 
     this->name = name;
     this->classPrefixModifier = classPrefixModifier;
-    this->AccessModifier = accessModifier;
 }
 // std::string IClassUnit::compile( unsigned int level ) const = 0 {
 //     std::string result = generateShift( level ) + "class " + name + " {\n";

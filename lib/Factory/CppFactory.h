@@ -2,6 +2,7 @@
 #define CPPFACTORY_H
 
 #include "IFactory.h"
+#include "ILocalVariableUnit.h"
 
 class CppFactory : public IFactory
 {
@@ -20,9 +21,9 @@ public:
                                                                   const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED) const override;
     std::shared_ptr<IPrintOperatorUnit> createPrintOperatorUnit(const std::string &text) const override;
 
-    std::shared_ptr<IStatementUnit> createLocalVariableUnit(const std::string &name,
-                                                            const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
-                                                            const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED) const;
+    std::shared_ptr<ILocalVariableUnit> createLocalVariableUnit(const std::string &name,
+                                                                          const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
+                                                                          const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED) const override;
 };
 
 #endif // CPPFACTORY_H

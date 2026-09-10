@@ -7,7 +7,6 @@
 #include "CppPrintOperatorUnit.h"
 #include "CppLocalVariableUnit.h"
 
-
 std::shared_ptr<IClassUnit> CppFactory::createClassUnit(const std::string &name, Modifiers::ClassPrefixModifiers classPrefixModifier) const
 {
     return std::make_shared<CppClassUnit>(name, classPrefixModifier);
@@ -39,10 +38,9 @@ std::shared_ptr<IPrintOperatorUnit> CppFactory::createPrintOperatorUnit(const st
     return std::make_shared<CppPrintOperatorUnit>(text);
 }
 
-std::shared_ptr<IStatementUnit> CppFactory::createLocalVariableUnit(
-    const std::string &name,
-    const Modifiers::ArgumentTypes &type,
-    const Modifiers::ArgumentPrefixModifiers &prefixModifier) const
+std::shared_ptr<ILocalVariableUnit> CppFactory::createLocalVariableUnit(const std::string &name,
+                                                                        const Modifiers::ArgumentTypes &type,
+                                                                        const Modifiers::ArgumentPrefixModifiers &prefixModifier) const
 {
     return std::make_shared<CppLocalVariableUnit>(name, type, prefixModifier);
 }

@@ -16,12 +16,14 @@ add_library(CodeGenLib
     lib/interfaces/IMethodUnit.cpp
     lib/interfaces/IMethodArgumentUnit.cpp
     lib/interfaces/IPrintOperatorUnit.cpp
+    lib/interfaces/ILocalVariableUnit.cpp
 
     lib/Cpp/CppClassUnit.cpp
     lib/Cpp/CppFieldUnit.cpp
     lib/Cpp/CppMethodUnit.cpp
     lib/Cpp/CppMethodArgumentUnit.cpp
     lib/Cpp/CppPrintOperatorUnit.cpp
+    lib/Cpp/CppLocalVariableUnit.cpp
 
     lib/Java/JavaClassUnit.cpp
     lib/Java/JavaMethodUnit.cpp

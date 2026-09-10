@@ -20,9 +20,10 @@ namespace
     }
 } // namespace
 
-void CppClassUnit::add(const std::shared_ptr<Unit> &unit, Flags flags)
+void CppClassUnit::addMember(const std::shared_ptr<Unit> &unit,
+                             Modifiers::AccessModifiers accessModifier)
 {
-    auto AccIndex = getAccessModifierNumber(static_cast<Modifiers::AccessModifiers>(flags));
+    auto AccIndex = getAccessModifierNumber(accessModifier);
     if (AccIndex >= Members.size())
     {
         Members.resize(AccIndex + 1);
@@ -58,7 +59,7 @@ std::string CppClassUnit::compile(unsigned int level) const
 }
 
 CppClassUnit::CppClassUnit(const std::string &name,
-                           Modifiers::ClassPrefixModifiers classPrefixModifier)
+                           const Modifiers::ClassPrefixModifiers &classPrefixModifier)
     : IClassUnit(name), Members(AccessModifierNames.size())
 {
     this->classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED;

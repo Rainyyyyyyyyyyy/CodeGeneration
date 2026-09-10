@@ -13,7 +13,7 @@ std::string JavaMethodArgumentUnit::compile(unsigned int level) const
     {
         throw std::invalid_argument("Invalid argument name: " + name);
     }
-    std::string result = generateShift(level) + GetArgumentTypeName(type) + " " + GetName();
+    std::string result = GetArgumentTypeName(type) + " " + GetName();
 
     return result;
 }

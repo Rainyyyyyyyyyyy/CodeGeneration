@@ -116,14 +116,18 @@ int main(int argc, char *argv[])
     auto cppFieldUnit = cppFactory.createFieldUnit("myField", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
     auto cppMethodUnit = cppFactory.createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID, Modifiers::AccessModifiers::PRIVATE);
     auto cppMethodArgUnit = cppFactory.createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
+    auto cppLocalVarUnit = cppFactory.createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::UNDEFINED);
+    auto cppPrintOpUnit = cppFactory.createPrintOperatorUnit("Hello from CppFactory!");
     cppClassUnit->addMember(cppFieldUnit, Modifiers::AccessModifiers::PUBLIC);
     cppClassUnit->addMember(cppMethodUnit, Modifiers::AccessModifiers::PRIVATE);
     cppMethodUnit->addArgument(cppMethodArgUnit);
+    cppMethodUnit->addBody(cppLocalVarUnit);
+    cppMethodUnit->addBody(cppPrintOpUnit);
     
     
     std::string stra = "Failed\n";
     try{
-        stra = jclaca.compile();
+        stra = cppClassUnit->compile();
     } catch (std::invalid_argument &e){
         std::cerr << "Error: " << e.what() << std::endl;
     }

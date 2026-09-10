@@ -19,3 +19,14 @@ IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name,
     this->name = name;
     this->prefixModifier = prefixModifier;
 }
+
+std::string IMethodArgumentUnit::generateShift(unsigned int level) const
+{
+    static const auto DEFAULT_SHIFT = " ";
+    std::string result;
+    for (unsigned int i = 0; i < level; ++i)
+    {
+        result += DEFAULT_SHIFT;
+    }
+    return result;
+}

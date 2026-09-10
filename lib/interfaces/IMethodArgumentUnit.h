@@ -7,12 +7,14 @@
 #include "Modifiers.h"
 #include "Unit.h"
 
-class IMethodArgumentUnit : public Unit
-{ // класс для конструкции "аргумент функции"
+class IMethodArgumentUnit // : public Unit
+{                         // класс для конструкции "аргумент функции"
 protected:
-    Modifiers::ArgumentTypes type; // тип
-    std::string name;   // название
+    Modifiers::ArgumentTypes type;                     // тип
+    std::string name;                                  // название
     Modifiers::ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
+
+    virtual std::string generateShift(unsigned int level) const;
 
 public:
     explicit IMethodArgumentUnit(const std::string &name,
@@ -26,11 +28,11 @@ public:
 
     inline const std::string &GetName() const { return name; }
     void SetName(const std::string &name);
-    
+
     inline const Modifiers::ArgumentPrefixModifiers &GetPrefixModifier() const { return prefixModifier; }
     void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);
 
-    std::string compile(unsigned int level = 0) const = 0;
+    virtual std::string compile(unsigned int level = 0) const = 0;
 };
 
 #endif // IMETHODARGUMENTUNIT_H

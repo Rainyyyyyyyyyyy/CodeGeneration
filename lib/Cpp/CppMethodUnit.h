@@ -23,8 +23,9 @@ class CppMethodUnit : public IMethodUnit
 public:
     explicit CppMethodUnit(const std::string &name,
                            const Modifiers::ArgumentTypes &returnType = Modifiers::ArgumentTypes::VOID,
-                           const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED, 
-                           const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED);
+                           const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED
+                           // const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED
+                           );
 
     ~CppMethodUnit() override = default;
 

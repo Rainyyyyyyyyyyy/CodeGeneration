@@ -1,10 +1,13 @@
 #include "CppClassUnit.h"
-#include <stdexcept>
 #include "utils.h"
+
+
+#include <stdexcept>
+
 
 namespace
 {
-    unsigned int getAccessModifierNumber(Modifiers::AccessModifiers flag)
+    size_t GetCppAccessModifierNumber(const Modifiers::AccessModifiers &flag)
     {
         switch (flag)
         {
@@ -18,16 +21,14 @@ namespace
             throw std::invalid_argument("Invalid access modifier"); // или по умолчанию ставить PRIVATE
         }
     }
+
+    const std::vector<std::string> CppAccessModifierNames = {"public", "protected", "private"};
 } // namespace
 
-void CppClassUnit::addMember(const std::shared_ptr<Unit> &unit,
-                             Modifiers::AccessModifiers accessModifier)
+void CppClassUnit::addMember(const std::shared_ptr<Unit> &unit, 
+                            const Modifiers::AccessModifiers &accessModifier)
 {
-    auto AccIndex = getAccessModifierNumber(accessModifier);
-    if (AccIndex >= Members.size())
-    {
-        Members.resize(AccIndex + 1);
-    }
+    size_t AccIndex = GetCppAccessModifierNumber(accessModifier);
     Members[AccIndex].push_back(unit);
 };
 
@@ -38,17 +39,13 @@ std::string CppClassUnit::compile(unsigned int level) const
         throw std::invalid_argument("Invalid argument name: " + name);
     }
     std::string result = generateShift(level) + "class " + name + " {\n";
-    if (Members.size() < AccessModifierNames.size())
+    for (size_t i = 0; i < 3; i++)
     {
-        return result + generateShift(level) + "};\n";
-    }
-    for (size_t i = 0; i < AccessModifierNames.size(); ++i)
-    {
-        if(Members[i].empty())
+        if (Members[i].empty())
         {
             continue;
         }
-        result += generateShift(level) + AccessModifierNames[i] + ":\n";
+        result += generateShift(level) + CppAccessModifierNames[i] + ":\n";
         for (const auto &unit : Members[i])
         {
             result += unit->compile(level + 1);
@@ -58,13 +55,8 @@ std::string CppClassUnit::compile(unsigned int level) const
     return result;
 }
 
-CppClassUnit::CppClassUnit(const std::string &name,
-                           const Modifiers::ClassPrefixModifiers &classPrefixModifier)
-    : IClassUnit(name), Members(AccessModifierNames.size())
-{
-    this->classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED;
-}
-         // названия модификаторов на С++
+CppClassUnit::CppClassUnit(const std::string &name)
+    : IClassUnit(name), Members(3) { }
+// названия модификаторов на С++
 
-
-const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};
+// const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};

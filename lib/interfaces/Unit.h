@@ -1,7 +1,7 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-#include <memory>
+//#include <memory>
 #include <string>
 // interface
 class Unit {
@@ -16,7 +16,7 @@ public:
     Также эта функция принимает параметр Flags.
     По умолчанию add() выбрасывает исключение.
     */
-    virtual void add( const std::shared_ptr< Unit >& , Flags ); // {
+    //virtual void add( const std::shared_ptr< Unit >& , Flags ); // {
     //    throw std::runtime_error( "Not supported" );
     //}
 

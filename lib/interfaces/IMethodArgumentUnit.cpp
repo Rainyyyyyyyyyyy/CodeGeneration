@@ -7,14 +7,14 @@ IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name,
                                          const Modifiers::ArgumentTypes &type,
                                          const Modifiers::ArgumentPrefixModifiers &prefixModifier)
 {
-    if (IsValidVariableName(name) == false)
-    { // если имя некорректно, то исключение
-        throw std::invalid_argument("Invalid argument name: " + name);
-    }
-    if (type == Modifiers::ArgumentTypes::VOID)
-    {
-        throw std::invalid_argument("Invalid argument type: " + GetArgumentTypeName(type));
-    }
+    // if (IsValidVariableName(name) == false)
+    // { // если имя некорректно, то исключение
+    //     throw std::invalid_argument("Invalid argument name: " + name);
+    // }
+    // if (type == Modifiers::ArgumentTypes::VOID)
+    // {
+    //     throw std::invalid_argument("Invalid argument type: " + GetArgumentTypeName(type));
+    // }
     this->type = type;
     this->name = name;
     this->prefixModifier = prefixModifier;
@@ -29,4 +29,19 @@ std::string IMethodArgumentUnit::generateShift(unsigned int level) const
         result += DEFAULT_SHIFT;
     }
     return result;
+}
+
+void IMethodArgumentUnit::SetType(const Modifiers::ArgumentTypes &type)
+{
+    this->type = type;
+}
+
+void IMethodArgumentUnit::SetName(const std::string &name)
+{
+    this->name = name;
+}
+
+void IMethodArgumentUnit::SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier)
+{
+    this->prefixModifier = prefixModifier;
 }

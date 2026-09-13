@@ -15,20 +15,20 @@ ClassPrefixModifiers //
 ArgumentTypes //
 ArgumentPrefixModifiers
 */
-// получить строку с названием из enum ArgumentTypes
-std::string GetArgumentTypeName(Modifiers::ArgumentTypes type);
+// // получить строку с названием из enum ArgumentTypes
+// std::string GetArgumentTypeName(Modifiers::ArgumentTypes type);
 
-// получить строку с названием из enum AccessModifiers
-std::string GetAccessModifierName(Modifiers::AccessModifiers accessModifier);
+// // получить строку с названием из enum AccessModifiers
+// std::string GetAccessModifierName(Modifiers::AccessModifiers accessModifier);
 
-// получить строку с названием из enum ClassPrefixModifiers
-std::string GetClassPrefixModifierName(Modifiers::ClassPrefixModifiers classPrefixModifier);
+// // получить строку с названием из enum ClassPrefixModifiers
+// std::string GetClassPrefixModifierName(Modifiers::ClassPrefixModifiers classPrefixModifier);
 
-// получить строку с названием из enum MethodPrefixModifiers
-std::string GetMethodPrefixModifierName(Modifiers::MethodPrefixModifiers methodPrefixModifier);
+// // получить строку с названием из enum MethodPrefixModifiers
+// std::string GetMethodPrefixModifierName(Modifiers::MethodPrefixModifiers methodPrefixModifier);
 
-// получить строку с названием из enum ArgumentPrefixModifiers
-std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers argumentPrefixModifier);
+// // получить строку с названием из enum ArgumentPrefixModifiers
+// std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers argumentPrefixModifier);
 
 
 // проверка имени аргумента функции\поля класса

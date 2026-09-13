@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(CodeGenLib
     lib/Factory/IFactory.cpp
     lib/Factory/CppFactory.cpp
-    #lib/Factory/JavaFactory.cpp
+    lib/Factory/JavaFactory.cpp
 
     lib/interfaces/Unit.cpp
     lib/interfaces/IClassUnit.cpp
@@ -29,8 +29,12 @@ add_library(CodeGenLib
     lib/Java/JavaMethodUnit.cpp
     lib/Java/JavaMethodArgumentUnit.cpp
     lib/Java/JavaFieldUnit.cpp
+    lib/Java/JavaPrintOperatorUnit.cpp
+    lib/Java/JavaLocalVariableUnit.cpp
 
     lib/utils/utils.cpp
+    lib/utils/CppUtils.cpp
+    lib/utils/JavaUtils.cpp
     lib/utils/Modifiers.h
 
     

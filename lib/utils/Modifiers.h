@@ -19,21 +19,15 @@ namespace Modifiers
 
     enum class MethodPrefixModifiers : unsigned int
     {                                    // модификаторы методов
-        UNDEFINED = 0,                   // будет обрабатываться как "ничего"
-        STATIC = 1 << 0,                 // C++ C# Java
-        CONST = 1 << 1,                  // C++ C#
-        VIRTUAL = 1 << 2,                // C++ C# (только методы)
-        VIRTUAL_CONST = VIRTUAL | CONST, // C++
-        STATIC_CONST = STATIC | CONST,   // C++
+        UNDEFINED = 0,                      // будет обрабатываться как "ничего"
+        STATIC = 1 << 0,                    // C++ C# Java
+        CONST = 1 << 1,                     // C++
+        VIRTUAL = 1 << 2,                   // C++ C#
+        FINAL = 1<<3,                       // Java
+        VIRTUAL_CONST = VIRTUAL | CONST,    // C++
+        STATIC_CONST = STATIC | CONST,      // C++ 
+        STATIC_FINAL = STATIC | FINAL       // Java
     };
-    // enum class MethodPostfixModifiers : Unit::Flags
-    // { // постфиксы для методов
-    //     // В КОНСТРУКТОРАХ РЕАЛИЗАЦИЙ (Cpp-, JAva-, Cs-MethodUnit рассмотреть невозможные комбинации и 
-    //     //выбрасывать исключения!!!!!!!!!!//)
-    //     UNDEFINED = 0, // будет обрабатываться как "ничего"
-    //     CONST = 1 << 0,  // C++ C#
-    //     FINAL = 1 << 3
-    // };
 
     enum class ClassPrefixModifiers : unsigned int
     {                      // модификаторы классов
@@ -42,11 +36,7 @@ namespace Modifiers
         FINAL = 1 << 6,    // C#, Java
     };
 
-    // enum class ClassPostfixModifiers : Unit::Flags
-    // {
-    //     UNDEFINED = 0, // будет обрабатываться как "ничего"
-    //     FINAL = 1 << 9,
-    // };
+
 
     enum class ArgumentTypes : unsigned int
     { // типы аргументов функции
@@ -66,7 +56,7 @@ namespace Modifiers
         CONST = 1 << 1,                // C++ C#
         STATIC_CONST = STATIC | CONST, // C++
         MUTABLE = 1 << 2,              // C++
-        FINAL = 1 << 3,                // Java (для полей)
+        FINAL = 1 << 3,                // Java 
         STATIC_FINAL = STATIC | FINAL, // Java
         READONLY = 1 << 4              // C# 
     };

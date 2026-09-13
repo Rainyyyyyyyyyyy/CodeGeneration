@@ -20,7 +20,7 @@ std::string JavaMethodUnit::compile(unsigned int level) const
     // формирование сигнатуры функции
     std::string result = generateShift(level) + GetAccessModifierName(accessModifier) +
                          ' ' + GetMethodPrefixModifierName(methodPrefixModifier) + 
-                         ' ' + generateShift(level) + GetArgumentTypeName(returnType) +
+                         ' ' + GetArgumentTypeName(returnType) +
                          ' ' + name + '(';
     size_t numberOfArguments = arguments.size();
     if (numberOfArguments > 0)

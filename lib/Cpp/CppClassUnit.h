@@ -17,10 +17,13 @@ private:
 public:
     ~CppClassUnit() override = default;
 
-    explicit CppClassUnit(const std::string &name,
-                        Modifiers::ClassPrefixModifiers classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
-         
-    void add(const std::shared_ptr<Unit> &unit, Flags flags) override;
+    //explicit CppClassUnit(const std::string &name,
+    //                    Modifiers::ClassPrefixModifiers classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
+    explicit CppClassUnit(const std::string& name,
+            const Modifiers::ClassPrefixModifiers &classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
+     
+    void addMember(const std::shared_ptr<Unit> &unit,
+                   Modifiers::AccessModifiers accessModifier) override;
     std::string compile(unsigned int level = 0) const override;
 };
 

@@ -50,13 +50,17 @@ std::string generateProgram() {
 #include "JavaClassUnit.h"
 #include "JavaMethodUnit.h"
 #include "JavaMethodArgumentUnit.h"
+#include "JavaLocalVariableUnit.h"
+
 
 
 #include "CppFactory.h"
+#include "JavaFactory.h"
 
 int main(int argc, char *argv[])
 {
 
+        /*
     const std::string className = "MyClass";
     CppClassUnit claca(className, Modifiers::ClassPrefixModifiers::UNDEFINED); //Modifiers::ClassModifiers::UNDEFINED);
     
@@ -107,23 +111,51 @@ int main(int argc, char *argv[])
     jclaca.addMember(std::make_shared<JavaMethodUnit>(jmethod1), Modifiers::AccessModifiers::PUBLIC);
     jclaca.addMember(std::make_shared<JavaMethodUnit>(jmethod2), Modifiers::AccessModifiers::PRIVATE);
     
-
+    */
     ///
-    /// Factory fragment
+    /// Factory fragment            (CPP)
     ///
-    CppFactory cppFactory;
-    auto cppClassUnit = cppFactory.createClassUnit("MyCppClass");
-    auto cppFieldUnit = cppFactory.createFieldUnit("myField", Modifiers::ArgumentTypes::INT, Modifiers::AccessModifiers::PUBLIC);
-    auto cppMethodUnit = cppFactory.createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID, Modifiers::AccessModifiers::PRIVATE);
-    auto cppMethodArgUnit = cppFactory.createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
+    std::shared_ptr<IFactory> cppFactory = std::make_shared<CppFactory>();
+    auto cppClassUnit = cppFactory->createClassUnit("MyCppClass");
+    auto cppFieldUnit = cppFactory->createFieldUnit("myField", Modifiers::ArgumentTypes::INT);// Modifiers::AccessModifiers::PUBLIC);
+    auto cppMethodUnit = cppFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto cppMethodArgUnit = cppFactory->createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
+    auto cppLocalVarUnit = cppFactory->createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::UNDEFINED);
+    auto cppPrintOpUnit = cppFactory->createPrintOperatorUnit("Hello from CppFactory!");
     cppClassUnit->addMember(cppFieldUnit, Modifiers::AccessModifiers::PUBLIC);
     cppClassUnit->addMember(cppMethodUnit, Modifiers::AccessModifiers::PRIVATE);
     cppMethodUnit->addArgument(cppMethodArgUnit);
+    cppMethodUnit->addBody(cppLocalVarUnit);
+    cppMethodUnit->addBody(cppPrintOpUnit);
+
+    //
+    //  Factory fragment            (JAVA)
+    //
+    std::shared_ptr<IFactory> javaFactory = std::make_shared<JavaFactory>();
+    auto javaClassUnit = javaFactory->createClassUnit("MyjavaClass");
+    auto javaFieldUnit = javaFactory->createFieldUnit("myField", Modifiers::ArgumentTypes::INT);// Modifiers::AccessModifiers::PUBLIC);
+    auto javaMethodUnit1 = javaFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto javaMethodUnit2 = javaFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto javaMethodUnit3 = javaFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto javaMethodUnit4 = javaFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    
+    auto javaMethodArgUnit = javaFactory->createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
+    auto javaLocalVarUnit = javaFactory->createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::UNDEFINED);
+    auto javaPrintOpUnit = javaFactory->createPrintOperatorUnit("Hello from javaFactory!");
+    javaClassUnit->addMember(javaFieldUnit, Modifiers::AccessModifiers::PUBLIC);
+    javaClassUnit->addMember(javaMethodUnit1, Modifiers::AccessModifiers::PRIVATE);
+    javaClassUnit->addMember(javaMethodUnit2, Modifiers::AccessModifiers::PRIVATE);
+    javaClassUnit->addMember(javaMethodUnit3, Modifiers::AccessModifiers::PRIVATE);
+    javaClassUnit->addMember(javaMethodUnit4, Modifiers::AccessModifiers::PRIVATE);
+    javaMethodUnit2->addArgument(javaMethodArgUnit);
+    javaMethodUnit2->addBody(javaLocalVarUnit);
+    javaMethodUnit3->addBody(javaPrintOpUnit);
+    
     
     
     std::string stra = "Failed\n";
     try{
-        stra = jclaca.compile();
+        stra = javaClassUnit->compile();
     } catch (std::invalid_argument &e){
         std::cerr << "Error: " << e.what() << std::endl;
     }

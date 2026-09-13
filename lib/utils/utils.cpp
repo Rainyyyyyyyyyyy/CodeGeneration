@@ -9,7 +9,7 @@ std::vector<char> InvalidSymbolsForArgumentName = {' ', '\t', '\n', '\r', '\f', 
                                                    '-', '+', '=', '[', ']', '{', '}', '|', '/', '?', ';', ':', '<', '>',
                                                    ',', '.', '~', '`'}; // список символов, которые не должны быть в
                                                                         // имени переменной\аргумента функции
-
+/*
 std::string GetArgumentTypeName(Modifiers::ArgumentTypes type)
 {
     switch (type)
@@ -124,7 +124,7 @@ std::string GetArgumentPrefixModifierName(Modifiers::ArgumentPrefixModifiers arg
         throw std::invalid_argument("Invalid argument prefix modifier");
     }
 }
-
+*/
 bool IsValidVariableName(const std::string &name)
 {
     if (name.empty())

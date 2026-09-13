@@ -7,7 +7,7 @@
 class ILocalVariableUnit : public IStatementUnit
 { // класс для конструкции "локальная переменная"
 protected:
-    std::string name;                       // название
+    std::string name;                                  // название
     Modifiers::ArgumentTypes type;                     // тип
     Modifiers::ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
 public:
@@ -26,7 +26,6 @@ public:
     void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);
 
     virtual std::string compile(unsigned int level = 0) const override = 0;
-
 };
 
 #endif // ILOCALVARIABLEUNIT_H

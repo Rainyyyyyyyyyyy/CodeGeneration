@@ -1,12 +1,32 @@
 #include "IMethodArgumentUnit.h"
+#include "utils.h"
 
+#include <stdexcept>
 
-ArgumentTypes IMethodArgumentUnit::getType() const
+IMethodArgumentUnit::IMethodArgumentUnit(const std::string &name,
+                                         const Modifiers::ArgumentTypes &type,
+                                         const Modifiers::ArgumentPrefixModifiers &prefixModifier)
 {
-    return type;
+    if (IsValidVariableName(name) == false)
+    { // если имя некорректно, то исключение
+        throw std::invalid_argument("Invalid argument name: " + name);
+    }
+    if (type == Modifiers::ArgumentTypes::VOID)
+    {
+        throw std::invalid_argument("Invalid argument type: " + GetArgumentTypeName(type));
+    }
+    this->type = type;
+    this->name = name;
+    this->prefixModifier = prefixModifier;
 }
 
-std::string IMethodArgumentUnit::getName() const
+std::string IMethodArgumentUnit::generateShift(unsigned int level) const
 {
-    return name;
+    static const auto DEFAULT_SHIFT = " ";
+    std::string result;
+    for (unsigned int i = 0; i < level; ++i)
+    {
+        result += DEFAULT_SHIFT;
+    }
+    return result;
 }

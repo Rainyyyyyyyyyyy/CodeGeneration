@@ -3,14 +3,13 @@
 
 #include "IMethodUnit.h"
 
-
 /*
 protected:
     std::string name;                   // название метода
     Modifiers::AccessModifiers accessModifier;      // модификатор доступа
     std::vector<std::shared_ptr<IMethodArgumentUnit>> arguments; // вектор аргументов
     std::vector<std::shared_ptr<Unit>> body; // тело метода (вектор вложенных элементов)
-    ArgumentTypes returnType;       // тип возвращаемого значения
+    Modifiers::ArgumentTypes returnType;       // тип возвращаемого значения
 
 public:
 
@@ -19,12 +18,16 @@ public:
         : name(name), returnType(returnType),
           accessModifier(accessModifier) {}
 */
-class CppMethodUnit : public IMethodUnit {
+class CppMethodUnit : public IMethodUnit
+{
 public:
-    CppMethodUnit(const std::string &name, const ArgumentTypes &returnType,
-                const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::PRIVATE)
-        : IMethodUnit(name, returnType, accessModifier) {}
+    explicit CppMethodUnit(const std::string &name,
+                           const Modifiers::ArgumentTypes &returnType = Modifiers::ArgumentTypes::VOID,
+                           const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED, 
+                           const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED);
 
-        std::string compile(unsigned int level=0) const override;
+    ~CppMethodUnit() override = default;
+
+    std::string compile(unsigned int level = 0) const override;
 };
 #endif // CPP_METHOD_UNIT_H

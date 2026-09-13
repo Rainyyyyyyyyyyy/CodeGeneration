@@ -3,38 +3,36 @@
 
 #include <string>
 #include <vector>
-#include <stdexcept>
-
 
 #include "Modifiers.h"
 #include "Unit.h"
-#include "utils.h"
 
-
-
-class IMethodArgumentUnit : public Unit {         // класс для конструкции "аргумент функции"
+class IMethodArgumentUnit // : public Unit
+{                         // класс для конструкции "аргумент функции"
 protected:
+    Modifiers::ArgumentTypes type;                     // тип
+    std::string name;                                  // название
+    Modifiers::ArgumentPrefixModifiers prefixModifier; // префикс аргумента (static, const, ...)
 
-    ArgumentTypes type;           // тип
-    std::string name;           // название
-    
+    virtual std::string generateShift(unsigned int level) const;
+
 public:
+    explicit IMethodArgumentUnit(const std::string &name,
+                                 const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
+                                 const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
-    IMethodArgumentUnit(const std::string &name, const ArgumentTypes& type){
-        if(IsValidVariableName(name) == false){     // если имя некорректно, то исключение
-            throw std::invalid_argument("Invalid argument name: " + name);
-        }
-        this->type = type;
-        this->name = name;
-    }
+    virtual ~IMethodArgumentUnit() = default;
 
-    ArgumentTypes getType() const;
-    std::string getName() const;
+    inline const Modifiers::ArgumentTypes &GetType() const { return type; }
+    void SetType(const Modifiers::ArgumentTypes &type);
 
-    std::string compile(unsigned int level=0) const = 0;
+    inline const std::string &GetName() const { return name; }
+    void SetName(const std::string &name);
 
+    inline const Modifiers::ArgumentPrefixModifiers &GetPrefixModifier() const { return prefixModifier; }
+    void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);
+
+    virtual std::string compile(unsigned int level = 0) const = 0;
 };
-
-
 
 #endif // IMETHODARGUMENTUNIT_H

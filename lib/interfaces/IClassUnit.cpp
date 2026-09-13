@@ -1,6 +1,14 @@
 #include "IClassUnit.h"
+#include "utils.h"
+#include <stdexcept>
 
+IClassUnit::IClassUnit(const std::string &name,
+                       const Modifiers::ClassPrefixModifiers &classPrefixModifier)
+{
 
+    this->name = name;
+    this->classPrefixModifier = classPrefixModifier;
+}
 // std::string IClassUnit::compile( unsigned int level ) const = 0 {
 //     std::string result = generateShift( level ) + "class " + name + " {\n";
 //         for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i ) {
@@ -17,4 +25,4 @@
 //     return result;
 // }
 
-//const std::vector< std::string > IClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private" };
+// const std::vector< std::string > IClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private" };

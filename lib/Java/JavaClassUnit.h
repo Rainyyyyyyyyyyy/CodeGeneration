@@ -1,16 +1,20 @@
 #ifndef JAVACLASSUNIT_H
 #define JAVACLASSUNIT_H
 
+#include <vector>
+
 #include "IClassUnit.h"
 
 class JavaClassUnit : public IClassUnit
 {
 private:
-    static const std::vector<std::string> AccessModifierNames;
-    static const std::vector<std::string> ClassPrefixModifierNames;
+    // static const std::vector<std::string> AccessModifierNames;
+    // static const std::vector<std::string> ClassPrefixModifierNames;
 
+    // Modifiers::ClassPrefixModifiers classPrefixModifier; // префик класса (abstract, final, "")
+    // Modifiers::AccessModifiers AccessModifier;             // модификатор доступа (public, private, protected)
     using Fields = std::vector<std::shared_ptr<Unit>>;
-    std::vector<Fields> Members; // вектор векторов,
+    std::vector<Fields> Members;             // вектор,
                                  // где каждый внутренний вектор содержит элементы класса
                                  // для определенного модификатора доступа
 
@@ -18,10 +22,12 @@ public:
     ~JavaClassUnit() override = default;
 
     explicit JavaClassUnit(const std::string &name,
-                           Modifiers::ClassPrefixModifiers classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED);
+                           const Modifiers::ClassPrefixModifiers &classPrefixModifier = Modifiers::ClassPrefixModifiers::UNDEFINED
+                           // const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED
+                           );
 
     void addMember(const std::shared_ptr<Unit> &unit,
-                   Modifiers::AccessModifiers accessModifier) override;
+                   const Modifiers::AccessModifiers &accessModifier) override;
     std::string compile(unsigned int level = 0) const override;
 };
 

@@ -9,6 +9,7 @@ add_library(CodeGenLib
     lib/Factory/IFactory.cpp
     lib/Factory/CppFactory.cpp
     lib/Factory/JavaFactory.cpp
+    lib/Factory/CSharpFactory.cpp
 
     lib/interfaces/Unit.cpp
     lib/interfaces/IClassUnit.cpp
@@ -32,9 +33,17 @@ add_library(CodeGenLib
     lib/Java/JavaPrintOperatorUnit.cpp
     lib/Java/JavaLocalVariableUnit.cpp
 
+    lib/CSharp/CSharpClassUnit.cpp
+    lib/CSharp/CSharpMethodUnit.cpp
+    lib/CSharp/CSharpMethodArgumentUnit.cpp
+    lib/CSharp/CSharpFieldUnit.cpp
+    lib/CSharp/CSharpPrintOperatorUnit.cpp
+    lib/CSharp/CSharpLocalVariableUnit.cpp
+
     lib/utils/utils.cpp
     lib/utils/CppUtils.cpp
     lib/utils/JavaUtils.cpp
+    lib/utils/CSharpUtils.cpp
     lib/utils/Modifiers.h
 
     
@@ -47,8 +56,9 @@ target_include_directories(CodeGenLib PUBLIC
     lib/interfaces
     lib/Cpp
     lib/Java
-    lib/utils
     lib/Factory
+    lib/CSharp
+    lib/utils
     )
 
 # Создание исполняемого файла

@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Создание библиотеки из исходных файлов в src/
 add_library(CodeGenLib
-    lib/Factory/IFactory.cpp
+    lib/Factory/IFactory.h
     lib/Factory/CppFactory.cpp
     lib/Factory/JavaFactory.cpp
     lib/Factory/CSharpFactory.cpp
@@ -65,6 +65,10 @@ target_include_directories(CodeGenLib PUBLIC
 add_executable(CodeGeneration main.cpp)
 target_include_directories(CodeGeneration PRIVATE lib)
 target_link_libraries(CodeGeneration CodeGenLib)
+
+add_executable(CodeGenerationTests test_main.cpp)
+target_include_directories(CodeGenerationTests PRIVATE lib)
+target_link_libraries(CodeGenerationTests CodeGenLib)
 
 # Установка директории для выходного .exe файла
 set_target_properties(CodeGeneration PROPERTIES

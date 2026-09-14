@@ -12,7 +12,6 @@ class IMethodUnit : public Unit
 { // класс для конструкции "метод класса"
 protected:
     std::string name;                                            // название метода
-    // Modifiers::AccessModifiers accessModifier;                   // модификатор доступа
     Modifiers::MethodPrefixModifiers methodPrefixModifier;       // префикс метода (static, const, virtual ...)
     std::vector<std::shared_ptr<IMethodArgumentUnit>> arguments; // вектор аргументов
     std::vector<std::shared_ptr<IStatementUnit>> body;           // тело метода
@@ -20,9 +19,7 @@ protected:
 
 public:
     explicit IMethodUnit(const std::string &name, const Modifiers::ArgumentTypes &returnType,
-                         const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED
-                         // const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED
-                         );
+                         const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED);
                          
     virtual ~IMethodUnit() = default;
 
@@ -30,9 +27,6 @@ public:
     void SetName(const std::string &name) { this->name = name; }
 
     inline const std::vector<std::shared_ptr<IStatementUnit>> &GetBody() const { return body; }
-
-    // inline const Modifiers::AccessModifiers &GetAccessModifier() const { return accessModifier; }
-    //void SetAccessModifier(const Modifiers::AccessModifiers &accessModifier) { this->accessModifier = accessModifier; }
 
     inline const Modifiers::ArgumentTypes &GetReturnType() const { return returnType; }
     void SetReturnType(const Modifiers::ArgumentTypes &returnType);

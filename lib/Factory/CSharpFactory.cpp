@@ -7,35 +7,26 @@
 #include "CSharpPrintOperatorUnit.h"
 #include "CSharpLocalVariableUnit.h"
 
-// Старая сигнатура сохраняется для истории:
-// std::shared_ptr<IClassUnit> JavaFactory::createClassUnit(
-//     const std::string &name,
-//     Modifiers::ClassPrefixModifiers classPrefixModifier) const
-// {
-//     return std::make_shared<JavaClassUnit>(name, classPrefixModifier);
-// }
-
 std::shared_ptr<IClassUnit> CSharpFactory::createClassUnit(const std::string &name,
                                                            const Modifiers::ClassPrefixModifiers &classPrefixModifier) const
-// const Modifiers::AccessModifiers &accessModifier) const
 {
-    return std::make_shared<CSharpClassUnit>(name, classPrefixModifier); //, accessModifier);
+    return std::make_shared<CSharpClassUnit>(name, classPrefixModifier);
 }
 
 std::shared_ptr<IFieldUnit> CSharpFactory::createFieldUnit(const std::string &name,
                                                            const Modifiers::ArgumentTypes &type,
                                                            const Modifiers::ArgumentPrefixModifiers &prefixModifier) const
-// const Modifiers::AccessModifiers &accessModifier) const
+
 {
-    return std::make_shared<CSharpFieldUnit>(name, type, prefixModifier); //, accessModifier);
+    return std::make_shared<CSharpFieldUnit>(name, type, prefixModifier);
 }
 
 std::shared_ptr<IMethodUnit> CSharpFactory::createMethodUnit(const std::string &name,
                                                              const Modifiers::ArgumentTypes &type,
                                                              const Modifiers::MethodPrefixModifiers &prefixModifier) const
-// const Modifiers::AccessModifiers &accessModifier) const
+
 {
-    return std::make_shared<CSharpMethodUnit>(name, type, prefixModifier); //, accessModifier);
+    return std::make_shared<CSharpMethodUnit>(name, type, prefixModifier);
 }
 
 std::shared_ptr<IMethodArgumentUnit> CSharpFactory::createMethodArgumentUnit(const std::string &name,

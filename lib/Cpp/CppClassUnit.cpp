@@ -55,6 +55,3 @@ std::string CppClassUnit::compile(unsigned int level) const
 
 CppClassUnit::CppClassUnit(const std::string &name)
     : IClassUnit(name), Members(3) {}
-// названия модификаторов на С++
-
-// const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};

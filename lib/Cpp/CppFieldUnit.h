@@ -6,9 +6,6 @@
 
 class CppFieldUnit : public IFieldUnit
 {
-private:
-    // const static std::vector<std::string> AccessModifiersNames;
-
 public:
     explicit CppFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
                           const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);

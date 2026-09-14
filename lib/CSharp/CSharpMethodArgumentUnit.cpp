@@ -6,11 +6,9 @@
 #include <stdexcept>
 
 CSharpMethodArgumentUnit::CSharpMethodArgumentUnit(const std::string &name,
-                                   const Modifiers::ArgumentTypes &type,
-                                   const Modifiers::ArgumentPrefixModifiers &argumentPrefixModifier)
-    : IMethodArgumentUnit(name, type, argumentPrefixModifier)
-{
-}
+                                                   const Modifiers::ArgumentTypes &type,
+                                                   const Modifiers::ArgumentPrefixModifiers &argumentPrefixModifier)
+    : IMethodArgumentUnit(name, type, argumentPrefixModifier) {}
 
 std::string CSharpMethodArgumentUnit::compile(unsigned int level) const
 {

@@ -5,15 +5,8 @@
 
 CppMethodUnit::CppMethodUnit(const std::string &name,
                              const Modifiers::ArgumentTypes &returnType,
-                             const Modifiers::MethodPrefixModifiers &methodPrefixModifier
-                             // , const Modifiers::AccessModifiers &accessModifier
-                             )
-
-    : IMethodUnit(name, returnType, methodPrefixModifier
-                  // , accessModifier
-      )
-{
-}
+                             const Modifiers::MethodPrefixModifiers &methodPrefixModifier)
+    : IMethodUnit(name, returnType, methodPrefixModifier) {}
 
 std::string CppMethodUnit::compile(unsigned int level) const
 {

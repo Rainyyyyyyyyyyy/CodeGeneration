@@ -7,11 +7,7 @@
 
 CSharpMethodUnit::CSharpMethodUnit(const std::string &name, const Modifiers::ArgumentTypes &returnType,
                                    const Modifiers::MethodPrefixModifiers &methodPrefixModifier)
-    : IMethodUnit(name, returnType, methodPrefixModifier
-                  // , accessModifier
-      )
-{
-}
+    : IMethodUnit(name, returnType, methodPrefixModifier) {}
 
 std::string CSharpMethodUnit::compile(unsigned int level) const
 {
@@ -21,10 +17,9 @@ std::string CSharpMethodUnit::compile(unsigned int level) const
     }
     // формирование сигнатуры функции
     std::string result = generateShift(level) +
-                         // GetCSharpAccessModifierName(accessModifier) + ' ' +
-                         GetCSharpMethodPrefixModifierName(methodPrefixModifier) +
-                         ' ' + GetCSharpArgumentTypeName(returnType) +
-                         ' ' + name + '(';
+                         GetCSharpMethodPrefixModifierName(methodPrefixModifier) + ' ' +
+                         GetCSharpArgumentTypeName(returnType) + ' ' +
+                         name + '(';
     size_t numberOfArguments = arguments.size();
     if (numberOfArguments > 0)
     {

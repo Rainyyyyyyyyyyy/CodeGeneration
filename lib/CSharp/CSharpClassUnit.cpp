@@ -5,8 +5,8 @@
 
 #include <stdexcept>
 
-
-namespace {
+namespace
+{
     size_t GetCSharpAccessModifierNumber(const Modifiers::AccessModifiers &flag)
     {
         switch (flag)
@@ -17,27 +17,28 @@ namespace {
             return 1;
         case Modifiers::AccessModifiers::PRIVATE:
             return 2;
+        case Modifiers::AccessModifiers::INTERNAL:
+            return 3;
+        case Modifiers::AccessModifiers::PROTECTED_INTERNAL:
+            return 4;
+        case Modifiers::AccessModifiers::PRIVATE_PROTECTED:
+            return 5;
+        case Modifiers::AccessModifiers::UNDEFINED:
+            return 6;
         default:
             throw std::invalid_argument("Invalid access modifier"); // или по умолчанию ставить PRIVATE
         }
     }
 
-    const std::vector<std::string> CSharpAccessModifierNames = {"public", "protected", "private"};
-} //namespace
+    const std::vector<std::string> CSharpAccessModifierNames = {"public", "protected", "private", "internal", "protected internal", "private protected", ""};
+} // namespace
 
 CSharpClassUnit::CSharpClassUnit(const std::string &name,
-                             const Modifiers::ClassPrefixModifiers &classPrefixModifier)
-    : IClassUnit(name, classPrefixModifier
-                 // , accessModifier
-                 ), Members(3)
-{
-    // this->classPrefixModifier = classPrefixModifier;
-    // this->AccessModifier = accessModifier;
-    
-}
+                                 const Modifiers::ClassPrefixModifiers &classPrefixModifier)
+    : IClassUnit(name, classPrefixModifier), Members(7) {}
 
 void CSharpClassUnit::addMember(const std::shared_ptr<Unit> &unit,
-                              const Modifiers::AccessModifiers &accessModifier)
+                                const Modifiers::AccessModifiers &accessModifier)
 {
     size_t AccIndex = GetCSharpAccessModifierNumber(accessModifier);
     Members[AccIndex].push_back(unit);
@@ -50,7 +51,7 @@ std::string CSharpClassUnit::compile(unsigned int level) const
         throw std::invalid_argument("Invalid argument name: " + name);
     }
     std::string result = generateShift(level) + "class " + name + " {\n";
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 7; i++)
     {
         if (Members[i].empty())
         {
@@ -63,20 +64,4 @@ std::string CSharpClassUnit::compile(unsigned int level) const
     }
     result += generateShift(level) + "};\n";
     return result;
-    // if (IsValidClassOrMethodName(name) == false)
-    // {
-    //     throw std::invalid_argument("Invalid class name: " + name);
-    // }
-    // std::string result = generateShift(level) + GetJavaClassPrefixModifierName(classPrefixModifier) + " class " + name + " {\n";
-    // // if (Members.size() == 0)
-    // // {
-    // //     return result + generateShift(level) + "};\n";
-    // // }
-    // size_t MembersSize = Members.size();
-    // for (size_t i = 0; i < MembersSize; i++)
-    // {
-    //     result += generateShift(level) + Members[i]->compile(level + 1);
-    // }
-    // result += generateShift(level) + "};\n";
-    // return result;
 }

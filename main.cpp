@@ -46,16 +46,26 @@ std::string generateProgram() {
 #include "CppMethodUnit.h"
 #include "CppMethodArgumentUnit.h"
 #include "CppPrintOperatorUnit.h"
+#include "CppLocalVariableUnit.h"
 
 #include "JavaClassUnit.h"
+#include "JavaFieldUnit.h"
 #include "JavaMethodUnit.h"
 #include "JavaMethodArgumentUnit.h"
+#include "JavaPrintOperatorUnit.h"
 #include "JavaLocalVariableUnit.h"
 
-
+#include "CSharpClassUnit.h"
+#include "CSharpFieldUnit.h"
+#include "CSharpMethodUnit.h"
+#include "CSharpMethodArgumentUnit.h"
+#include "CSharpPrintOperatorUnit.h"
+#include "CSharpLocalVariableUnit.h"
 
 #include "CppFactory.h"
 #include "JavaFactory.h"
+#include "CSharpFactory.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -118,9 +128,9 @@ int main(int argc, char *argv[])
     std::shared_ptr<IFactory> cppFactory = std::make_shared<CppFactory>();
     auto cppClassUnit = cppFactory->createClassUnit("MyCppClass");
     auto cppFieldUnit = cppFactory->createFieldUnit("myField", Modifiers::ArgumentTypes::INT);// Modifiers::AccessModifiers::PUBLIC);
-    auto cppMethodUnit = cppFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto cppMethodUnit = cppFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID, Modifiers::MethodPrefixModifiers::STATIC);//, Modifiers::AccessModifiers::PRIVATE);
     auto cppMethodArgUnit = cppFactory->createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
-    auto cppLocalVarUnit = cppFactory->createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::UNDEFINED);
+    auto cppLocalVarUnit = cppFactory->createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::STATIC);
     auto cppPrintOpUnit = cppFactory->createPrintOperatorUnit("Hello from CppFactory!");
     cppClassUnit->addMember(cppFieldUnit, Modifiers::AccessModifiers::PUBLIC);
     cppClassUnit->addMember(cppMethodUnit, Modifiers::AccessModifiers::PRIVATE);
@@ -150,12 +160,36 @@ int main(int argc, char *argv[])
     javaMethodUnit2->addArgument(javaMethodArgUnit);
     javaMethodUnit2->addBody(javaLocalVarUnit);
     javaMethodUnit3->addBody(javaPrintOpUnit);
+
+
+    //
+    //  Factory fragment            (CSharp)
+    //
+    std::shared_ptr<IFactory> cSharpFactory = std::make_shared<CSharpFactory>();
+    auto CSharpClassUnit = cSharpFactory->createClassUnit("MyCSharpClass");
+    auto CSharpFieldUnit = cSharpFactory->createFieldUnit("myField", Modifiers::ArgumentTypes::INT);// Modifiers::AccessModifiers::PUBLIC);
+    auto CSharpMethodUnit1 = cSharpFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto CSharpMethodUnit2 = cSharpFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto CSharpMethodUnit3 = cSharpFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    auto CSharpMethodUnit4 = cSharpFactory->createMethodUnit("myMethod", Modifiers::ArgumentTypes::VOID);//, Modifiers::AccessModifiers::PRIVATE);
+    
+    auto CSharpMethodArgUnit = cSharpFactory->createMethodArgumentUnit("myArg", Modifiers::ArgumentTypes::STRING);
+    auto CSharpLocalVarUnit = cSharpFactory->createLocalVariableUnit("LocalVar1", Modifiers::ArgumentTypes::DOUBLE, Modifiers::ArgumentPrefixModifiers::UNDEFINED);
+    auto CSharpPrintOpUnit = cSharpFactory->createPrintOperatorUnit("Hello from CSharpFactory!");
+    CSharpClassUnit->addMember(CSharpFieldUnit, Modifiers::AccessModifiers::PUBLIC);
+    CSharpClassUnit->addMember(CSharpMethodUnit1, Modifiers::AccessModifiers::PRIVATE);
+    CSharpClassUnit->addMember(CSharpMethodUnit2, Modifiers::AccessModifiers::PRIVATE);
+    CSharpClassUnit->addMember(CSharpMethodUnit3, Modifiers::AccessModifiers::PRIVATE);
+    CSharpClassUnit->addMember(CSharpMethodUnit4, Modifiers::AccessModifiers::PRIVATE);
+    CSharpMethodUnit2->addArgument(CSharpMethodArgUnit);
+    CSharpMethodUnit2->addBody(CSharpLocalVarUnit);
+    CSharpMethodUnit3->addBody(CSharpPrintOpUnit);
     
     
     
     std::string stra = "Failed\n";
     try{
-        stra = javaClassUnit->compile();
+        stra = CSharpClassUnit->compile();
     } catch (std::invalid_argument &e){
         std::cerr << "Error: " << e.what() << std::endl;
     }

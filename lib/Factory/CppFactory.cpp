@@ -9,23 +9,23 @@
 
 std::shared_ptr<IClassUnit> CppFactory::createClassUnit(const std::string &name,
                                                         const Modifiers::ClassPrefixModifiers &classPrefixModifier) const
-                                                        //const Modifiers::AccessModifiers &accessModifier) const
+// const Modifiers::AccessModifiers &accessModifier) const
 {
-    return std::make_shared<CppClassUnit>(name);//, classPrefixModifier, accessModifier); 
+    return std::make_shared<CppClassUnit>(name); //, classPrefixModifier, accessModifier);
 }
 
 std::shared_ptr<IFieldUnit> CppFactory::createFieldUnit(const std::string &name,
                                                         const Modifiers::ArgumentTypes &type,
                                                         const Modifiers::ArgumentPrefixModifiers &prefixModifier) const
-                                                        //const Modifiers::AccessModifiers &accessModifier) const
+// const Modifiers::AccessModifiers &accessModifier) const
 {
-    return std::make_shared<CppFieldUnit>(name, type, prefixModifier);//, accessModifier); 
+    return std::make_shared<CppFieldUnit>(name, type, prefixModifier); //, accessModifier);
 }
 
 std::shared_ptr<IMethodUnit> CppFactory::createMethodUnit(const std::string &name,
-                                                          const Modifiers::ArgumentTypes &type, 
+                                                          const Modifiers::ArgumentTypes &type,
                                                           const Modifiers::MethodPrefixModifiers &prefixModifier) const
-                                                          //const Modifiers::AccessModifiers &accessModifier) const 
+// const Modifiers::AccessModifiers &accessModifier) const
 {
     return std::make_shared<CppMethodUnit>(name, type, prefixModifier);
 }

@@ -1,9 +1,7 @@
 #include "CppClassUnit.h"
 #include "utils.h"
 
-
 #include <stdexcept>
-
 
 namespace
 {
@@ -25,8 +23,8 @@ namespace
     const std::vector<std::string> CppAccessModifierNames = {"public", "protected", "private"};
 } // namespace
 
-void CppClassUnit::addMember(const std::shared_ptr<Unit> &unit, 
-                            const Modifiers::AccessModifiers &accessModifier)
+void CppClassUnit::addMember(const std::shared_ptr<Unit> &unit,
+                             const Modifiers::AccessModifiers &accessModifier)
 {
     size_t AccIndex = GetCppAccessModifierNumber(accessModifier);
     Members[AccIndex].push_back(unit);
@@ -56,7 +54,7 @@ std::string CppClassUnit::compile(unsigned int level) const
 }
 
 CppClassUnit::CppClassUnit(const std::string &name)
-    : IClassUnit(name), Members(3) { }
+    : IClassUnit(name), Members(3) {}
 // названия модификаторов на С++
 
 // const std::vector<std::string> CppClassUnit::AccessModifierNames = {"public", "protected", "private"};

@@ -11,7 +11,6 @@ namespace Modifiers
         PRIVATE = 1,                               // C++ C# Java
         PROTECTED = 1 << 1,                        // C++ C# Java
         PRIVATE_PROTECTED = PRIVATE | PROTECTED,   // C#
-        FILE = 1 << 2,                             // C#
         INTERNAL = 1 << 3,                         // C#
         PROTECTED_INTERNAL = PROTECTED | INTERNAL, // C#
         PUBLIC = 1 << 4                            // C++ C# Java
@@ -19,14 +18,14 @@ namespace Modifiers
 
     enum class MethodPrefixModifiers : unsigned int
     {                                    // модификаторы методов
-        UNDEFINED = 0,                      // будет обрабатываться как "ничего"
-        STATIC = 1 << 0,                    // C++ C# Java
-        CONST = 1 << 1,                     // C++
-        VIRTUAL = 1 << 2,                   // C++ C#
-        FINAL = 1<<3,                       // Java
-        VIRTUAL_CONST = VIRTUAL | CONST,    // C++
-        STATIC_CONST = STATIC | CONST,      // C++ 
-        STATIC_FINAL = STATIC | FINAL       // Java
+        UNDEFINED = 0,                   // C++ C# Java будет обрабатываться как "ничего"
+        STATIC = 1 << 0,                 // C++ C# Java
+        CONST = 1 << 1,                  // C++
+        VIRTUAL = 1 << 2,                // C++ C#
+        FINAL = 1 << 3,                  // Java
+        VIRTUAL_CONST = VIRTUAL | CONST, // C++
+        STATIC_CONST = STATIC | CONST,   // C++
+        STATIC_FINAL = STATIC | FINAL    // Java
     };
 
     enum class ClassPrefixModifiers : unsigned int
@@ -35,8 +34,6 @@ namespace Modifiers
         ABSTRACT = 1 << 5, // C#, Java
         FINAL = 1 << 6,    // C#, Java
     };
-
-
 
     enum class ArgumentTypes : unsigned int
     { // типы аргументов функции
@@ -56,9 +53,9 @@ namespace Modifiers
         CONST = 1 << 1,                // C++ C#
         STATIC_CONST = STATIC | CONST, // C++
         MUTABLE = 1 << 2,              // C++
-        FINAL = 1 << 3,                // Java 
+        FINAL = 1 << 3,                // Java
         STATIC_FINAL = STATIC | FINAL, // Java
-        READONLY = 1 << 4              // C# 
+        READONLY = 1 << 4              // C#
     };
 
 } // Modifiers

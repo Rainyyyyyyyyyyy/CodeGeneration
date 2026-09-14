@@ -1,7 +1,6 @@
 #include "JavaUtils.h"
 #include <stdexcept>
 
-
 std::string GetJavaArgumentTypeName(const Modifiers::ArgumentTypes &type)
 {
     switch (type)
@@ -22,7 +21,6 @@ std::string GetJavaArgumentTypeName(const Modifiers::ArgumentTypes &type)
         throw std::invalid_argument("Invalid argument type");
     }
 }
-
 
 std::string GetJavaAccessModifierName(const Modifiers::AccessModifiers &accessModifier)
 {
@@ -56,32 +54,36 @@ std::string GetJavaClassPrefixModifierName(const Modifiers::ClassPrefixModifiers
     }
 }
 
-std::string GetJavaMethodPrefixModifierName(const Modifiers::MethodPrefixModifiers &methodPrefixModifier){
-    switch(methodPrefixModifier){
-        case Modifiers::MethodPrefixModifiers::UNDEFINED:
-            return "";
-        case Modifiers::MethodPrefixModifiers::STATIC:
-            return "static";
-        case Modifiers::MethodPrefixModifiers::FINAL:
-            return "final";
-        case Modifiers::MethodPrefixModifiers::STATIC_FINAL:
-            return "static final";
-        default: 
-            throw std::invalid_argument("Invalid method prefix modifier");
+std::string GetJavaMethodPrefixModifierName(const Modifiers::MethodPrefixModifiers &methodPrefixModifier)
+{
+    switch (methodPrefixModifier)
+    {
+    case Modifiers::MethodPrefixModifiers::UNDEFINED:
+        return "";
+    case Modifiers::MethodPrefixModifiers::STATIC:
+        return "static";
+    case Modifiers::MethodPrefixModifiers::FINAL:
+        return "final";
+    case Modifiers::MethodPrefixModifiers::STATIC_FINAL:
+        return "static final";
+    default:
+        throw std::invalid_argument("Invalid method prefix modifier");
     }
 }
 
-std::string GetJavaArgumentPrefixModifierName(const Modifiers::ArgumentPrefixModifiers &argumentPrefixModifier){
-    switch(argumentPrefixModifier){
-        case Modifiers::ArgumentPrefixModifiers::UNDEFINED:
-            return "";
-        case Modifiers::ArgumentPrefixModifiers::FINAL:
-            return "final";
-        case Modifiers::ArgumentPrefixModifiers::STATIC:
-            return "static";
-        case Modifiers::ArgumentPrefixModifiers::STATIC_FINAL:
-            return "static final";
-        default:
-            throw std::invalid_argument("Invalid argument prefix modifier");
+std::string GetJavaArgumentPrefixModifierName(const Modifiers::ArgumentPrefixModifiers &argumentPrefixModifier)
+{
+    switch (argumentPrefixModifier)
+    {
+    case Modifiers::ArgumentPrefixModifiers::UNDEFINED:
+        return "";
+    case Modifiers::ArgumentPrefixModifiers::FINAL:
+        return "final";
+    case Modifiers::ArgumentPrefixModifiers::STATIC:
+        return "static";
+    case Modifiers::ArgumentPrefixModifiers::STATIC_FINAL:
+        return "static final";
+    default:
+        throw std::invalid_argument("Invalid argument prefix modifier");
     }
 }

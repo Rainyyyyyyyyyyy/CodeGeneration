@@ -3,26 +3,26 @@
 #include "CppUtils.h"
 #include <stdexcept>
 
-
 CppMethodUnit::CppMethodUnit(const std::string &name,
-                           const Modifiers::ArgumentTypes &returnType,
-                           const Modifiers::MethodPrefixModifiers &methodPrefixModifier
-                           // , const Modifiers::AccessModifiers &accessModifier
-                           )
+                             const Modifiers::ArgumentTypes &returnType,
+                             const Modifiers::MethodPrefixModifiers &methodPrefixModifier
+                             // , const Modifiers::AccessModifiers &accessModifier
+                             )
 
     : IMethodUnit(name, returnType, methodPrefixModifier
                   // , accessModifier
-                  ){
-    }
+      )
+{
+}
 
 std::string CppMethodUnit::compile(unsigned int level) const
 {
-    if(IsValidClassOrMethodName(name) == false)
+    if (IsValidClassOrMethodName(name) == false)
     { // если имя некорректно, то исключение
         throw std::invalid_argument("Invalid method name: " + name);
     }
     // формирование сигнатуры функции
-    std::string result = generateShift(level) + GetCppArgumentTypeName(returnType) + ' ' + name + '(';
+    std::string result = generateShift(level) + GetCppMethodPrefixName(methodPrefixModifier) + ' ' + GetCppArgumentTypeName(returnType) + ' ' + name + '(';
     size_t numberOfArguments = arguments.size();
     if (numberOfArguments > 0)
     {

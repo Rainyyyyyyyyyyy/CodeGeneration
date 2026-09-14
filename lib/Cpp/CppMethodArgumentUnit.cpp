@@ -3,11 +3,6 @@
 #include "CppUtils.h"
 #include <stdexcept>
 
-namespace
-{
-
-}
-
 CppMethodArgumentUnit::CppMethodArgumentUnit(const std::string &name,
                                              const Modifiers::ArgumentTypes &type,
                                              const Modifiers::ArgumentPrefixModifiers &prefixModifier)

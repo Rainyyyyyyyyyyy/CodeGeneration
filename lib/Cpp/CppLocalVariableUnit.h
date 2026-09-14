@@ -7,9 +7,6 @@
 
 class CppLocalVariableUnit : public ILocalVariableUnit
 { // конструкция "локальная переменная в методе" для C++
-private:
-    // const static std::vector<std::string> ArgumentTypesNames;
-    // const static std::vector<std::string> ArgumentPrefixModifierNames;
 public:
     CppLocalVariableUnit(const std::string &name, const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
                          const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);

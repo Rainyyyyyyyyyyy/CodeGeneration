@@ -10,5 +10,4 @@ std::string GetJavaClassPrefixModifierName(const Modifiers::ClassPrefixModifiers
 std::string GetJavaMethodPrefixModifierName(const Modifiers::MethodPrefixModifiers &methodPrefixModifier);
 std::string GetJavaArgumentPrefixModifierName(const Modifiers::ArgumentPrefixModifiers &argumentPrefixModifier);
 
-
 #endif // JAVA_UTILS_H

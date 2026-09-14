@@ -25,7 +25,7 @@ public:
                            const Modifiers::ArgumentTypes &returnType = Modifiers::ArgumentTypes::VOID,
                            const Modifiers::MethodPrefixModifiers &methodPrefixModifier = Modifiers::MethodPrefixModifiers::UNDEFINED
                            // const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED
-                           );
+    );
 
     ~CppMethodUnit() override = default;
 

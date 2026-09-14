@@ -2,13 +2,10 @@
 #include "utils.h"
 #include "CppUtils.h"
 
-
 #include <stdexcept>
 
-
-
 CppFieldUnit::CppFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type,
-                          const Modifiers::ArgumentPrefixModifiers &prefixModifier)
+                           const Modifiers::ArgumentPrefixModifiers &prefixModifier)
     : IFieldUnit(name, type, prefixModifier) {}
 
 std::string CppFieldUnit::compile(unsigned int level) const

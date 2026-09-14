@@ -1,9 +1,8 @@
 #include "CppUtils.h"
 
-
 #include <stdexcept>
 
-std::string GetCppArgumentTypeName(Modifiers::ArgumentTypes type)
+const std::string GetCppArgumentTypeName(const Modifiers::ArgumentTypes &type)
 {
     switch (type)
     {
@@ -43,3 +42,23 @@ const std::string GetCppArgumentPrefixModifierName(const Modifiers::ArgumentPref
     }
 }
 
+const std::string GetCppMethodPrefixName(const Modifiers::MethodPrefixModifiers &modifier)
+{
+    switch (modifier)
+    {
+    case Modifiers::MethodPrefixModifiers::UNDEFINED:
+        return "";
+    case Modifiers::MethodPrefixModifiers::STATIC:
+        return "static";
+    case Modifiers::MethodPrefixModifiers::CONST:
+        return "const";
+    case Modifiers::MethodPrefixModifiers::VIRTUAL:
+        return "virtual";
+    case Modifiers::MethodPrefixModifiers::VIRTUAL_CONST:
+        return "virtual const";
+    case Modifiers::MethodPrefixModifiers::STATIC_CONST:
+        return "static const";
+    default:
+        throw std::invalid_argument("Invalid method prefix modifier");
+    }
+}

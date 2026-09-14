@@ -5,7 +5,7 @@ CppPrintOperatorUnit::CppPrintOperatorUnit(const std::string &text) : IPrintOper
 std::string CppPrintOperatorUnit::compile(unsigned int level) const
 {
     if (text.empty())
-    {   // если текст для вывода пуст, то выводим просто std::cout<<std::endl;
+    { // если текст для вывода пуст, то выводим просто std::cout<<std::endl;
         return generateShift(level) + "std::cout<<std::endl;\n";
     }
 

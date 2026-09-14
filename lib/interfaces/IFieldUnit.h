@@ -23,7 +23,7 @@ public:
     virtual ~IFieldUnit() = default;
 
     // inline const Modifiers::AccessModifiers &GetAccessModifier() const { return accessModifier; }
-    void SetAccessModifier(const Modifiers::AccessModifiers &accessModifier);
+    //void SetAccessModifier(const Modifiers::AccessModifiers &accessModifier);
 
     inline const Modifiers::ArgumentPrefixModifiers &GetPrefixModifier() const { return prefixModifier; }
     void SetPrefixModifier(const Modifiers::ArgumentPrefixModifiers &prefixModifier);

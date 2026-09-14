@@ -38,7 +38,7 @@ void IFieldUnit::SetType(const Modifiers::ArgumentTypes &type)
     this->type = type;
 }
 
-void IFieldUnit::SetAccessModifier(const Modifiers::AccessModifiers &accessModifier)
-{
-    // this->accessModifier = accessModifier;
-}
+// void IFieldUnit::SetAccessModifier(const Modifiers::AccessModifiers &accessModifier)
+// {
+//     // this->accessModifier = accessModifier;
+// }

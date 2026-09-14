@@ -4,15 +4,13 @@
 #include "IFieldUnit.h"
 #include <vector>
 
-
 class CppFieldUnit : public IFieldUnit
 {
 private:
-    const static std::vector<std::string> AccessModifiersNames;
+    // const static std::vector<std::string> AccessModifiersNames;
 
 public:
-    explicit CppFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type,
-                          const Modifiers::AccessModifiers &accessModifier = Modifiers::AccessModifiers::UNDEFINED, 
+    explicit CppFieldUnit(const std::string &name, const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
                           const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
     ~CppFieldUnit() override = default;

@@ -7,7 +7,8 @@ class CppMethodArgumentUnit : public IMethodArgumentUnit
 {
 public:
     explicit CppMethodArgumentUnit(const std::string &name,
-                                   const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED);
+                                   const Modifiers::ArgumentTypes &type = Modifiers::ArgumentTypes::UNDEFINED,
+                                   const Modifiers::ArgumentPrefixModifiers &prefixModifier = Modifiers::ArgumentPrefixModifiers::UNDEFINED);
 
     ~CppMethodArgumentUnit() override = default;
 

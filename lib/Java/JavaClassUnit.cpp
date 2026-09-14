@@ -1,100 +1,82 @@
 #include "JavaClassUnit.h"
 #include "Modifiers.h"
-#include "stdexcept"
 #include "utils.h"
+#include "JavaUtils.h"
 
-namespace
-{ // ПЕРЕДЕЛАТЬ ПОД JAVA
+#include <stdexcept>
 
-    size_t getAccessModifierNumber(Modifiers::AccessModifiers flag)
+
+namespace {
+    size_t GetJavaAccessModifierNumber(const Modifiers::AccessModifiers &flag)
     {
         switch (flag)
         {
-        case Modifiers::AccessModifiers::UNDEFINED: // без модификатора (default-package)
-            return 0;
         case Modifiers::AccessModifiers::PUBLIC:
-            return 1;
+            return 0;
         case Modifiers::AccessModifiers::PROTECTED:
-            return 2;
+            return 1;
         case Modifiers::AccessModifiers::PRIVATE:
-            return 3;
+            return 2;
         default:
             throw std::invalid_argument("Invalid access modifier"); // или по умолчанию ставить PRIVATE
         }
     }
-    size_t getClassPrefixModifierNumber(Modifiers::ClassPrefixModifiers flag)
-    {
-        switch (flag)
-        {
-        case Modifiers::ClassPrefixModifiers::UNDEFINED:
-            return 0;
-        case Modifiers::ClassPrefixModifiers::ABSTRACT:
-            return 1;
-        case Modifiers::ClassPrefixModifiers::FINAL:
-            return 2;
-        default:
-            throw std::invalid_argument("Invalid class prefix modifier");
-        }
-    }
 
-} // namespace
+    const std::vector<std::string> JavaAccessModifierNames = {"public", "protected", "private"};
+} //namespace
 
 JavaClassUnit::JavaClassUnit(const std::string &name,
-                             Modifiers::ClassPrefixModifiers classPrefixModifier)
-    : IClassUnit(name), Members(AccessModifierNames.size())
+                             const Modifiers::ClassPrefixModifiers &classPrefixModifier)
+    : IClassUnit(name, classPrefixModifier
+                 // , accessModifier
+                 ), Members(3)
 {
-    this->classPrefixModifier = classPrefixModifier;
+    // this->classPrefixModifier = classPrefixModifier;
+    // this->AccessModifier = accessModifier;
+    
 }
 
 void JavaClassUnit::addMember(const std::shared_ptr<Unit> &unit,
-                              Modifiers::AccessModifiers accessModifier)
+                              const Modifiers::AccessModifiers &accessModifier)
 {
-    auto AccIndex = getAccessModifierNumber(accessModifier);
-    if (AccIndex >= Members.size())
-    {
-        Members.resize(AccIndex + 1);
-    }
+    size_t AccIndex = GetJavaAccessModifierNumber(accessModifier);
     Members[AccIndex].push_back(unit);
 };
 
 std::string JavaClassUnit::compile(unsigned int level) const
 {
-    if (IsValidClassOrMethodName(name) == false)
-    {
-        throw std::invalid_argument("Invalid class name: " + name);
+    if (IsValidVariableName(name) == false)
+    { // если имя некорректно, то исключение
+        throw std::invalid_argument("Invalid argument name: " + name);
     }
-    std::string result = generateShift(level) + GetClassPrefixModifierName(classPrefixModifier) + " class " + name + " {\n";
-    if (Members.size() < AccessModifierNames.size())
-    {
-        return result + generateShift(level) + "};\n";
-    }
-    for (size_t i = 0; i < AccessModifierNames.size(); ++i)
+    std::string result = generateShift(level) + "class " + name + " {\n";
+    for (size_t i = 0; i < 3; i++)
     {
         if (Members[i].empty())
         {
             continue;
         }
-        result += generateShift(level); // + AccessModifierNames[i] + ":\n";
         for (const auto &unit : Members[i])
         {
-            result += unit->compile(level + 1);
+            result += generateShift(level) + JavaAccessModifierNames[i] + unit->compile(level + 1);
         }
     }
     result += generateShift(level) + "};\n";
     return result;
+    // if (IsValidClassOrMethodName(name) == false)
+    // {
+    //     throw std::invalid_argument("Invalid class name: " + name);
+    // }
+    // std::string result = generateShift(level) + GetJavaClassPrefixModifierName(classPrefixModifier) + " class " + name + " {\n";
+    // // if (Members.size() == 0)
+    // // {
+    // //     return result + generateShift(level) + "};\n";
+    // // }
+    // size_t MembersSize = Members.size();
+    // for (size_t i = 0; i < MembersSize; i++)
+    // {
+    //     result += generateShift(level) + Members[i]->compile(level + 1);
+    // }
+    // result += generateShift(level) + "};\n";
+    // return result;
 }
-
-const std::vector<std::string> JavaClassUnit::AccessModifierNames = {
-    "", // для UNDEFINED (default-package)
-    "public",
-    "protected",
-    "private"};
-
-const std::vector<std::string> JavaClassUnit::ClassPrefixModifierNames = {
-    "",         // UNDEFINED
-    "abstract", // ABSTRACT
-    "final"     // FINAL
-    //"public",    // PUBLIC
-    //"protected", // PROTECTED
-    //"private"    // PRIVATE
-};
